@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import DateTimeField from "react-bootstrap-datetimepicker";
+import DateTimeField from "../../src/DateTimeField";
 import moment from "moment";
 import ParentComponent from "./ParentComponent";
 

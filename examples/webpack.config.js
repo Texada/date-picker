@@ -12,14 +12,14 @@ module.exports = {
     filename: "[name].js",
     chunkFilename: "[id].chunk.js",
     sourceMapFilename: "[name].map",
-    assetPath: "/"
+    publicPath: "/"
   },
 
   resolve: {
     alias: {
       "react-bootstrap-datetimepicker": "../../src/DateTimeField"
     },
-    extensions: ["", ".js"]
+    extensions: [".js"]
   },
 
   module: {
