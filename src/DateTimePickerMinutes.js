@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import { PropTypes } from "prop-types";
 import Constants from "./Constants.js";
 
 export default class DateTimePickerMinutes extends Component {

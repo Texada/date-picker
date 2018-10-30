@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     MODE_DATE: "date",
     MODE_DATETIME: "datetime",
     MODE_TIME: "time",
