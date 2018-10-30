@@ -4,29 +4,7 @@ import DateTimePickerDays from "./DateTimePickerDays";
 import DateTimePickerMonths from "./DateTimePickerMonths";
 import DateTimePickerYears from "./DateTimePickerYears";
 
-export default class DateTimePickerDate extends Component {
-  static propTypes = {
-    subtractMonth: PropTypes.func.isRequired,
-    addMonth: PropTypes.func.isRequired,
-    viewDate: PropTypes.object.isRequired,
-    selectedDate: PropTypes.object.isRequired,
-    showToday: PropTypes.bool,
-    viewMode: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    daysOfWeekDisabled: PropTypes.array,
-    setSelectedDate: PropTypes.func.isRequired,
-    subtractYear: PropTypes.func.isRequired,
-    addYear: PropTypes.func.isRequired,
-    setViewMonth: PropTypes.func.isRequired,
-    setViewYear: PropTypes.func.isRequired,
-    addDecade: PropTypes.func.isRequired,
-    subtractDecade: PropTypes.func.isRequired,
-    minDate: PropTypes.object,
-    maxDate: PropTypes.object
-  }
-
+class DateTimePickerDate extends Component {
   constructor(props) {
     super(props);
     const viewModes = {
@@ -146,3 +124,28 @@ export default class DateTimePickerDate extends Component {
   }
 }
 
+DateTimePickerDate.propTypes = {
+  subtractMonth: PropTypes.func.isRequired,
+  addMonth: PropTypes.func.isRequired,
+  viewDate: PropTypes.object.isRequired,
+  selectedDate: PropTypes.object.isRequired,
+  showToday: PropTypes.bool,
+  viewMode: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  daysOfWeekDisabled: PropTypes.array,
+  setSelectedDate: PropTypes.func.isRequired,
+  subtractYear: PropTypes.func.isRequired,
+  addYear: PropTypes.func.isRequired,
+  setViewMonth: PropTypes.func.isRequired,
+  setViewYear: PropTypes.func.isRequired,
+  addDecade: PropTypes.func.isRequired,
+  subtractDecade: PropTypes.func.isRequired,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object
+};
+
+
+
+export default DateTimePickerDate;

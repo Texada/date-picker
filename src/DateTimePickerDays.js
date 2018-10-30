@@ -3,24 +3,7 @@ import { PropTypes } from "prop-types";
 import moment from "moment";
 import classnames from "classnames";
 
-export default class DateTimePickerDays extends Component {
-  static propTypes = {
-    subtractMonth: PropTypes.func.isRequired,
-    addMonth: PropTypes.func.isRequired,
-    viewDate: PropTypes.object.isRequired,
-    selectedDate: PropTypes.object.isRequired,
-    showToday: PropTypes.bool,
-    daysOfWeekDisabled: PropTypes.array,
-    setSelectedDate: PropTypes.func.isRequired,
-    showMonths: PropTypes.func.isRequired,
-    minDate: PropTypes.object,
-    maxDate: PropTypes.object
-  }
-
-  static defaultProps = {
-    showToday: true
-  }
-
+class DateTimePickerDays extends Component {
   renderDays = () => {
     var cells, classes, days, html, month, nextMonth, prevMonth, minDate, maxDate, row, year;
     year = this.props.viewDate.year();
@@ -108,3 +91,21 @@ export default class DateTimePickerDays extends Component {
   }
 }
 
+DateTimePickerDays.propTypes = {
+  subtractMonth: PropTypes.func.isRequired,
+  addMonth: PropTypes.func.isRequired,
+  viewDate: PropTypes.object.isRequired,
+  selectedDate: PropTypes.object.isRequired,
+  showToday: PropTypes.bool,
+  daysOfWeekDisabled: PropTypes.array,
+  setSelectedDate: PropTypes.func.isRequired,
+  showMonths: PropTypes.func.isRequired,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object
+};
+
+DateTimePickerDays.defaultProps = {
+  showToday: true
+};
+
+export default DateTimePickerDays;

@@ -2,13 +2,7 @@ import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import Constants from "./Constants.js";
 
-export default class DateTimePickerMinutes extends Component {
-  static propTypes = {
-    setSelectedMinute: PropTypes.func.isRequired,
-    onSwitch: PropTypes.func.isRequired,
-    mode: PropTypes.string.isRequired
-  }
-
+class DateTimePickerMinutes extends Component {
   renderSwitchButton = () => {
     return this.props.mode === Constants.MODE_TIME ?
         (
@@ -63,3 +57,10 @@ export default class DateTimePickerMinutes extends Component {
   }
 }
 
+DateTimePickerMinutes.propTypes = {
+  setSelectedMinute: PropTypes.func.isRequired,
+  onSwitch: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired
+};
+
+export default DateTimePickerMinutes;

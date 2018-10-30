@@ -3,16 +3,7 @@ import { PropTypes } from "prop-types";
 import classnames from "classnames";
 import moment from "moment";
 
-export default class DateTimePickerMonths extends Component {
-  static propTypes = {
-    subtractYear: PropTypes.func.isRequired,
-    addYear: PropTypes.func.isRequired,
-    viewDate: PropTypes.object.isRequired,
-    selectedDate: PropTypes.object.isRequired,
-    showYears: PropTypes.func.isRequired,
-    setViewMonth: PropTypes.func.isRequired
-  }
-
+class DateTimePickerMonths extends Component {
   renderMonths = () => {
     var classes, i, month, months, monthsShort;
     month = this.props.selectedDate.month();
@@ -55,3 +46,13 @@ export default class DateTimePickerMonths extends Component {
   }
 }
 
+DateTimePickerMonths.propTypes = {
+  subtractYear: PropTypes.func.isRequired,
+  addYear: PropTypes.func.isRequired,
+  viewDate: PropTypes.object.isRequired,
+  selectedDate: PropTypes.object.isRequired,
+  showYears: PropTypes.func.isRequired,
+  setViewMonth: PropTypes.func.isRequired
+};
+
+export default DateTimePickerMonths;
