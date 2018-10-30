@@ -2,15 +2,7 @@ import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import classnames from "classnames";
 
-export default class DateTimePickerYears extends Component {
-  static propTypes = {
-    subtractDecade: PropTypes.func.isRequired,
-    addDecade: PropTypes.func.isRequired,
-    viewDate: PropTypes.object.isRequired,
-    selectedDate: PropTypes.object.isRequired,
-    setViewYear: PropTypes.func.isRequired
-  }
-
+class DateTimePickerYears extends Component {
   renderYears = () => {
     var classes, i, year, years;
     years = [];
@@ -57,3 +49,12 @@ export default class DateTimePickerYears extends Component {
   }
 }
 
+DateTimePickerYears.propTypes = {
+  subtractDecade: PropTypes.func.isRequired,
+  addDecade: PropTypes.func.isRequired,
+  viewDate: PropTypes.object.isRequired,
+  selectedDate: PropTypes.object.isRequired,
+  setViewYear: PropTypes.func.isRequired
+};
+
+export default DateTimePickerYears;

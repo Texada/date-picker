@@ -5,21 +5,7 @@ import classnames from "classnames";
 import DateTimePicker from "./DateTimePicker.js";
 import Constants from "./Constants.js";
 
-export default class DateTimeField extends Component {
-  static defaultProps = {
-    dateTime: moment().format("x"),
-    format: "x",
-    showToday: true,
-    viewMode: "days",
-    daysOfWeekDisabled: [],
-    size: Constants.SIZE_MEDIUM,
-    mode: Constants.MODE_DATETIME,
-    zIndex: 999,
-    onChange: (x) => {
-      console.log(x);
-    }
-  }
-
+class DateTimeField extends Component { 
   resolvePropsInputFormat = () => {
     if (this.props.inputFormat) { return this.props.inputFormat; }
     switch (this.props.mode) {
@@ -30,27 +16,6 @@ export default class DateTimeField extends Component {
       default:
         return "MM/DD/YY h:mm A";
     }
-  }
-
-  static propTypes = {
-    dateTime: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    onChange: PropTypes.func,
-    format: PropTypes.string,
-    inputProps: PropTypes.object,
-    inputFormat: PropTypes.string,
-    defaultText: PropTypes.string,
-    mode: PropTypes.oneOf([Constants.MODE_DATE, Constants.MODE_DATETIME, Constants.MODE_TIME]),
-    minDate: PropTypes.object,
-    maxDate: PropTypes.object,
-    direction: PropTypes.string,
-    showToday: PropTypes.bool,
-    viewMode: PropTypes.string,
-    zIndex: PropTypes.number,
-    size: PropTypes.oneOf([Constants.SIZE_SMALL, Constants.SIZE_MEDIUM, Constants.SIZE_LARGE]),
-    daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number)
   }
 
   state = {
@@ -386,3 +351,39 @@ export default class DateTimeField extends Component {
   }
 }
 
+DateTimeField.defaultProps = {
+  dateTime: moment().format("x"),
+  format: "x",
+  showToday: true,
+  viewMode: "days",
+  daysOfWeekDisabled: [],
+  size: Constants.SIZE_MEDIUM,
+  mode: Constants.MODE_DATETIME,
+  zIndex: 999,
+  onChange: (x) => {
+    console.log(x);
+  }
+};
+
+DateTimeField.propTypes = {
+  dateTime: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  onChange: PropTypes.func,
+  format: PropTypes.string,
+  inputProps: PropTypes.object,
+  inputFormat: PropTypes.string,
+  defaultText: PropTypes.string,
+  mode: PropTypes.oneOf([Constants.MODE_DATE, Constants.MODE_DATETIME, Constants.MODE_TIME]),
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object,
+  direction: PropTypes.string,
+  showToday: PropTypes.bool,
+  viewMode: PropTypes.string,
+  zIndex: PropTypes.number,
+  size: PropTypes.oneOf([Constants.SIZE_SMALL, Constants.SIZE_MEDIUM, Constants.SIZE_LARGE]),
+  daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number)
+}
+
+export default DateTimeField;

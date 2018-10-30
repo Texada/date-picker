@@ -4,20 +4,7 @@ import DateTimePickerMinutes from "./DateTimePickerMinutes";
 import DateTimePickerHours from "./DateTimePickerHours";
 import Constants from "./Constants.js";
 
-export default class DateTimePickerTime extends Component {
-  static propTypes = {
-    setSelectedHour: PropTypes.func.isRequired,
-    setSelectedMinute: PropTypes.func.isRequired,
-    subtractHour: PropTypes.func.isRequired,
-    addHour: PropTypes.func.isRequired,
-    subtractMinute: PropTypes.func.isRequired,
-    addMinute: PropTypes.func.isRequired,
-    viewDate: PropTypes.object.isRequired,
-    selectedDate: PropTypes.object.isRequired,
-    togglePeriod: PropTypes.func.isRequired,
-    mode: PropTypes.oneOf([Constants.MODE_DATE, Constants.MODE_DATETIME, Constants.MODE_TIME])
-  }
-
+class DateTimePickerTime extends Component {
   state = {
     minutesDisplayed: false,
     hoursDisplayed: false
@@ -117,4 +104,18 @@ export default class DateTimePickerTime extends Component {
   }
 }
 
+DateTimePickerTime.propTypes = {
+  setSelectedHour: PropTypes.func.isRequired,
+  setSelectedMinute: PropTypes.func.isRequired,
+  subtractHour: PropTypes.func.isRequired,
+  addHour: PropTypes.func.isRequired,
+  subtractMinute: PropTypes.func.isRequired,
+  addMinute: PropTypes.func.isRequired,
+  viewDate: PropTypes.object.isRequired,
+  selectedDate: PropTypes.object.isRequired,
+  togglePeriod: PropTypes.func.isRequired,
+  mode: PropTypes.oneOf([Constants.MODE_DATE, Constants.MODE_DATETIME, Constants.MODE_TIME])
+};
+
+export default DateTimePickerTime;
 export { DateTimePickerTime };
