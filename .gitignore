@@ -7,5 +7,5 @@ test-built/*
 .idea
 docs/*.html
 docs/assets/bundle.js
-lib/*
+lib/__tests__
 /bower_components/
