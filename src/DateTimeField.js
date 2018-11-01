@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { createPortal } from "react-dom";
 import { PropTypes } from "prop-types";
 import moment from "moment";
 import classnames from "classnames";
@@ -348,47 +349,45 @@ class DateTimeField extends Component {
             document.body
           ).scrollTop;
 
-    let placePosition = (() => {
-      switch (this.props.direction) {
-        case "up":
-          return "top";
-        case "bottom":
-          return "bottom";
-        case "auto":
-          if (
-            offset.top + this.refs.widget.offsetHeight >
-              window.offsetHeight + scrollTop &&
-            this.refs.widget.offsetHeight +
-              this.refs.datetimepicker.offsetHeight >
-              offset.top
-          ) {
-            return "top";
-          } else {
-            return "bottom";
-          }
-        default:
-          return undefined;
-      }
-    })();
+    // let placePosition = (() => {
+    //   switch (this.props.direction) {
+    //     case "up":
+    //       return "top";
+    //     case "bottom":
+    //       return "bottom";
+    //     case "auto":
+    //       if (
+    //         offset.top + this.refs.widget.offsetHeight >
+    //           window.offsetHeight + scrollTop &&
+    //         this.refs.widget.offsetHeight +
+    //           this.refs.datetimepicker.offsetHeight >
+    //           offset.top
+    //       ) {
+    //         return "top";
+    //       } else {
+    //         return "bottom";
+    //       }
+    //     default:
+    //       return undefined;
+    //   }
+    // })();
 
-    if (placePosition === "top") {
-      offset.top = -this.refs.widget.offsetHeight - this.clientHeight - 2;
-      classes.top = true;
-      classes.bottom = false;
-      classes["pull-right"] = true;
-    } else {
-      offset.top = 40;
-      classes.top = false;
-      classes.bottom = true;
-      classes["pull-right"] = true;
-    }
+    // if (placePosition === "top") {
+    //   offset.top = -this.refs.widget.offsetHeight - this.clientHeight - 2;
+    //   classes.top = true;
+    //   classes.bottom = false;
+    // } else {
+    //   offset.top = 40;
+    //   classes.top = false;
+    //   classes.bottom = true;
+    // }
 
     const styles = {
       display: "block",
       position: "absolute",
       top: offset.top,
-      left: "auto",
-      right: 40
+      left: offset.left,
+      // right: 40
     };
 
     return this.setState({
@@ -429,12 +428,13 @@ class DateTimeField extends Component {
     };
 
     if (this.state.showPicker) {
-      return (
+      return createPortal(
         <div
           className="bootstrap-datetimepicker-overlay"
           onClick={this.closePicker}
           style={styles}
-        />
+        />,
+        document.querySelector("body")
       );
     } else {
       return <span />;

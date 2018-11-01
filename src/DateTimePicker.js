@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { createPortal } from "react-dom";
 import { PropTypes } from "prop-types";
 import classnames from "classnames";
 import DateTimePickerDate from "./DateTimePickerDate.js";
@@ -76,7 +77,7 @@ class DateTimePicker extends Component {
   };
 
   render() {
-    return (
+    return createPortal(
       <div
         className={classnames(this.props.widgetClasses)}
         style={this.props.widgetStyle}
@@ -88,7 +89,8 @@ class DateTimePicker extends Component {
 
           {this.renderTimePicker()}
         </ul>
-      </div>
+      </div>,
+      document.querySelector("body")
     );
   }
 }
