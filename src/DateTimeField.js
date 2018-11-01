@@ -6,6 +6,9 @@ import classnames from "classnames";
 import DateTimePicker from "./DateTimePicker.js";
 import Constants from "./Constants.js";
 
+const WIDGET_WIDTH = 250;
+const WIDGET_HEIGHT = 287.5;
+
 class DateTimeField extends Component {
   resolvePropsInputFormat = () => {
     if (this.props.inputFormat) {
@@ -340,10 +343,22 @@ class DateTimeField extends Component {
     };
     offset.top = offset.top + this.datetimepickerRef.offsetHeight;
 
-    //         offset.top + this.widgetRef.offsetHeight >
-    //           window.offsetHeight + scrollTop &&
-    //         this.widgetRef.offsetHeight +
-    //           this.datetimepickerRef.offsetHeight >
+    // if widget would appear off-screen adjust the offset to keep it on-screen
+    if (window.innerWidth < offset.left) {
+      const offscreen =
+        calendarButtonClientRect.left + WIDGET_WIDTH - window.innerWidth;
+      const screenPadding = Math.min(window.innerWidth * 0.05, 30);
+      offset.left -= offscreen + screenPadding;
+    } else {
+      offset.left -= WIDGET_WIDTH - 40;
+    }
+
+    if (window.innerHeight < calendarButtonClientRect.bottom + WIDGET_HEIGHT) {
+      const offscreen =
+        calendarButtonClientRect.bottom + WIDGET_HEIGHT - window.innerHeight;
+      const screenPadding = Math.min(window.innerHeight * 0.02, 15);
+      offset.top -= offscreen + screenPadding;
+    }
 
     const styles = {
       display: "block",
