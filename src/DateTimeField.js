@@ -313,69 +313,88 @@ class DateTimeField extends Component {
   };
 
   onClick = () => {
-    let classes, gBCR, offset, placePosition, scrollTop, styles;
     if (this.state.showPicker) {
       return this.closePicker();
-    } else {
-      this.setState({
-        showPicker: true
-      });
-      gBCR = this.refs.dtpbutton.getBoundingClientRect();
-      classes = {
-        "bootstrap-datetimepicker-widget": true,
-        "dropdown-menu": true
-      };
-      offset = {
-        top: gBCR.top + window.pageYOffset - document.documentElement.clientTop,
-        left:
-          gBCR.left + window.pageXOffset - document.documentElement.clientLeft
-      };
-      offset.top = offset.top + this.refs.datetimepicker.offsetHeight;
-      scrollTop =
-        window.pageYOffset !== undefined
-          ? window.pageYOffset
-          : (
-              document.documentElement ||
-              document.body.parentNode ||
-              document.body
-            ).scrollTop;
-      placePosition =
-        this.props.direction === "up"
-          ? "top"
-          : this.props.direction === "bottom"
-            ? "bottom"
-            : this.props.direction === "auto"
-              ? offset.top + this.refs.widget.offsetHeight >
-                  window.offsetHeight + scrollTop &&
-                this.refs.widget.offsetHeight +
-                  this.refs.datetimepicker.offsetHeight >
-                  offset.top
-                ? "top"
-                : "bottom"
-              : void 0;
-      if (placePosition === "top") {
-        offset.top = -this.refs.widget.offsetHeight - this.clientHeight - 2;
-        classes.top = true;
-        classes.bottom = false;
-        classes["pull-right"] = true;
-      } else {
-        offset.top = 40;
-        classes.top = false;
-        classes.bottom = true;
-        classes["pull-right"] = true;
-      }
-      styles = {
-        display: "block",
-        position: "absolute",
-        top: offset.top,
-        left: "auto",
-        right: 40
-      };
-      return this.setState({
-        widgetStyle: styles,
-        widgetClasses: classes
-      });
     }
+
+    this.setState({
+      showPicker: true
+    });
+
+    let calendarButtonClientRect = this.refs.openCalendarButton.getBoundingClientRect();
+    let classes = {
+      "bootstrap-datetimepicker-widget": true,
+      "dropdown-menu": true
+    };
+
+    let offset = {
+      top:
+        calendarButtonClientRect.top +
+        window.pageYOffset -
+        document.documentElement.clientTop,
+      left:
+        calendarButtonClientRect.left +
+        window.pageXOffset -
+        document.documentElement.clientLeft
+    };
+    offset.top = offset.top + this.refs.datetimepicker.offsetHeight;
+
+    let scrollTop =
+      window.pageYOffset !== undefined
+        ? window.pageYOffset
+        : (
+            document.documentElement ||
+            document.body.parentNode ||
+            document.body
+          ).scrollTop;
+
+    let placePosition = (() => {
+      switch (this.props.direction) {
+        case "up":
+          return "top";
+        case "bottom":
+          return "bottom";
+        case "auto":
+          if (
+            offset.top + this.refs.widget.offsetHeight >
+              window.offsetHeight + scrollTop &&
+            this.refs.widget.offsetHeight +
+              this.refs.datetimepicker.offsetHeight >
+              offset.top
+          ) {
+            return "top";
+          } else {
+            return "bottom";
+          }
+        default:
+          return undefined;
+      }
+    })();
+
+    if (placePosition === "top") {
+      offset.top = -this.refs.widget.offsetHeight - this.clientHeight - 2;
+      classes.top = true;
+      classes.bottom = false;
+      classes["pull-right"] = true;
+    } else {
+      offset.top = 40;
+      classes.top = false;
+      classes.bottom = true;
+      classes["pull-right"] = true;
+    }
+
+    const styles = {
+      display: "block",
+      position: "absolute",
+      top: offset.top,
+      left: "auto",
+      right: 40
+    };
+
+    return this.setState({
+      widgetStyle: styles,
+      widgetClasses: classes
+    });
   };
 
   closePicker = () => {
@@ -394,9 +413,9 @@ class DateTimeField extends Component {
         return "form-group-sm";
       case Constants.SIZE_LARGE:
         return "form-group-lg";
+      default:
+        return "";
     }
-
-    return "";
   };
 
   renderOverlay = () => {
@@ -408,6 +427,7 @@ class DateTimeField extends Component {
       right: 0,
       zIndex: `${this.props.zIndex}`
     };
+
     if (this.state.showPicker) {
       return (
         <div
@@ -469,7 +489,7 @@ class DateTimeField extends Component {
             className="input-group-addon"
             onBlur={this.onBlur}
             onClick={this.onClick}
-            ref="dtpbutton"
+            ref="openCalendarButton"
           >
             <span className={classnames("glyphicon", this.state.buttonIcon)} />
           </span>
@@ -507,7 +527,7 @@ DateTimeField.propTypes = {
   ]),
   minDate: PropTypes.object,
   maxDate: PropTypes.object,
-  direction: PropTypes.string,
+  direction: PropTypes.oneOf(["up", "bottom", "auto", undefined]),
   showToday: PropTypes.bool,
   viewMode: PropTypes.string,
   zIndex: PropTypes.number,

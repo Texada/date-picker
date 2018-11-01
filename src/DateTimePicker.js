@@ -9,77 +9,86 @@ class DateTimePicker extends Component {
   renderDatePicker = () => {
     if (this.props.showDatePicker) {
       return (
-      <li>
-        <DateTimePickerDate
-              addDecade={this.props.addDecade}
-              addMonth={this.props.addMonth}
-              addYear={this.props.addYear}
-              daysOfWeekDisabled={this.props.daysOfWeekDisabled}
-              maxDate={this.props.maxDate}
-              minDate={this.props.minDate}
-              selectedDate={this.props.selectedDate}
-              setSelectedDate={this.props.setSelectedDate}
-              setViewMonth={this.props.setViewMonth}
-              setViewYear={this.props.setViewYear}
-              showToday={this.props.showToday}
-              subtractDecade={this.props.subtractDecade}
-              subtractMonth={this.props.subtractMonth}
-              subtractYear={this.props.subtractYear}
-              viewDate={this.props.viewDate}
-              viewMode={this.props.viewMode}
-        />
-      </li>
+        <li>
+          <DateTimePickerDate
+            addDecade={this.props.addDecade}
+            addMonth={this.props.addMonth}
+            addYear={this.props.addYear}
+            daysOfWeekDisabled={this.props.daysOfWeekDisabled}
+            maxDate={this.props.maxDate}
+            minDate={this.props.minDate}
+            selectedDate={this.props.selectedDate}
+            setSelectedDate={this.props.setSelectedDate}
+            setViewMonth={this.props.setViewMonth}
+            setViewYear={this.props.setViewYear}
+            showToday={this.props.showToday}
+            subtractDecade={this.props.subtractDecade}
+            subtractMonth={this.props.subtractMonth}
+            subtractYear={this.props.subtractYear}
+            viewDate={this.props.viewDate}
+            viewMode={this.props.viewMode}
+          />
+        </li>
       );
     }
-  }
+  };
 
   renderTimePicker = () => {
     if (this.props.showTimePicker) {
       return (
-      <li>
-        <DateTimePickerTime
-              addHour={this.props.addHour}
-              addMinute={this.props.addMinute}
-              mode={this.props.mode}
-              selectedDate={this.props.selectedDate}
-              setSelectedHour={this.props.setSelectedHour}
-              setSelectedMinute={this.props.setSelectedMinute}
-              subtractHour={this.props.subtractHour}
-              subtractMinute={this.props.subtractMinute}
-              togglePeriod={this.props.togglePeriod}
-              viewDate={this.props.viewDate}
-        />
-      </li>
+        <li>
+          <DateTimePickerTime
+            addHour={this.props.addHour}
+            addMinute={this.props.addMinute}
+            mode={this.props.mode}
+            selectedDate={this.props.selectedDate}
+            setSelectedHour={this.props.setSelectedHour}
+            setSelectedMinute={this.props.setSelectedMinute}
+            subtractHour={this.props.subtractHour}
+            subtractMinute={this.props.subtractMinute}
+            togglePeriod={this.props.togglePeriod}
+            viewDate={this.props.viewDate}
+          />
+        </li>
       );
     }
-  }
+  };
 
   renderSwitchButton = () => {
-      return this.props.mode === Constants.MODE_DATETIME ?
-          (
-              <li>
-                <span className="btn picker-switch" onClick={this.props.togglePicker} style={{width: "100%"}} ><span className={classnames("glyphicon", this.props.showTimePicker ? "glyphicon-calendar" : "glyphicon-time")} /></span>
-              </li>
-          ) :
-          null;
-  }
+    return this.props.mode === Constants.MODE_DATETIME ? (
+      <li>
+        <span
+          className="btn picker-switch"
+          onClick={this.props.togglePicker}
+          style={{ width: "100%" }}
+        >
+          <span
+            className={classnames(
+              "glyphicon",
+              this.props.showTimePicker
+                ? "glyphicon-calendar"
+                : "glyphicon-time"
+            )}
+          />
+        </span>
+      </li>
+    ) : null;
+  };
 
   render() {
     return (
-      <div className={classnames(this.props.widgetClasses)} style={this.props.widgetStyle}>
-
+      <div
+        className={classnames(this.props.widgetClasses)}
+        style={this.props.widgetStyle}
+      >
         <ul className="list-unstyled">
-
           {this.renderDatePicker()}
 
           {this.renderSwitchButton()}
 
           {this.renderTimePicker()}
-
         </ul>
-
       </div>
-
     );
   }
 }
@@ -92,11 +101,12 @@ DateTimePicker.propTypes = {
   viewDate: PropTypes.object.isRequired,
   selectedDate: PropTypes.object.isRequired,
   showToday: PropTypes.bool,
-  viewMode: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
+  viewMode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  mode: PropTypes.oneOf([
+    Constants.MODE_DATE,
+    Constants.MODE_DATETIME,
+    Constants.MODE_TIME
   ]),
-  mode: PropTypes.oneOf([Constants.MODE_DATE, Constants.MODE_DATETIME, Constants.MODE_TIME]),
   daysOfWeekDisabled: PropTypes.array,
   setSelectedDate: PropTypes.func.isRequired,
   subtractYear: PropTypes.func.isRequired,
@@ -118,7 +128,5 @@ DateTimePicker.propTypes = {
   setSelectedHour: PropTypes.func,
   setSelectedMinute: PropTypes.func
 };
-
-
 
 export default DateTimePicker;
