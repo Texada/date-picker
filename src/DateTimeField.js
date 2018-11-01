@@ -6,8 +6,8 @@ import classnames from "classnames";
 import DateTimePicker from "./DateTimePicker.js";
 import Constants from "./Constants.js";
 
-const WIDGET_WIDTH = 250;
-const WIDGET_HEIGHT = 287.5;
+const WIDGET_WIDTH = 266;
+const WIDGET_HEIGHT = 292;
 
 class DateTimeField extends Component {
   resolvePropsInputFormat = () => {

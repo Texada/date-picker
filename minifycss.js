@@ -16,5 +16,13 @@ new CleanCSS({
         console.log("Done minifying css");
       }
     });
+
+    fs.writeFile("examples/styles.min.css", output.styles, err => {
+      if (err) {
+        console.log("Error minifying css", err.message);
+      } else {
+        console.log("Done minifying css");
+      }
+    });
   }
 );

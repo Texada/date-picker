@@ -1,0 +1,46 @@
+.daterangepicker .calendar-table,
+.datepicker .datepicker-days,
+.timepicker,
+.datepicker .datepicker-months td {
+  font-family: "Merriweather Sans";
+}
+
+.datepicker .datepicker-days .day.active,
+.datepicker .datepicker-months .month.active,
+.datepicker .datepicker-years .year.active {
+  background-color: #286090;
+}
+
+.btn.picker-switch {
+  margin-bottom: 8px;
+}
+
+.bootstrap-datetimepicker-widget .btn {
+  border-radius: 8px !important;
+  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.12);
+}
+
+/* date picker dropdown */
+.ranges li {
+  font-size: 14px;
+  color: inherit;
+  padding: 2px 12px;
+}
+
+.datepicker thead .switch,
+.timepicker .timepicker-picker td {
+  text-align: center;
+}
+
+.bootstrap-datetimepicker-widget {
+  right: 15px !important;
+}
+
+.bootstrap-datetimepicker-widget.pull-right::after, .bootstrap-datetimepicker-widget.pull-right::before {
+  display: none;
+}
+
+.ranges li:hover,
+.ranges li.active {
+  background-color: #337ab7;
+}
