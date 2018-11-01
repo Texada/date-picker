@@ -322,7 +322,7 @@ class DateTimeField extends Component {
       showPicker: true
     });
 
-    let calendarButtonClientRect = this.refs.openCalendarButton.getBoundingClientRect();
+    let calendarButtonClientRect = this.openCalendarButtonRef.getBoundingClientRect();
     let classes = {
       "bootstrap-datetimepicker-widget": true,
       "dropdown-menu": true
@@ -338,56 +338,18 @@ class DateTimeField extends Component {
         window.pageXOffset -
         document.documentElement.clientLeft
     };
-    offset.top = offset.top + this.refs.datetimepicker.offsetHeight;
+    offset.top = offset.top + this.datetimepickerRef.offsetHeight;
 
-    let scrollTop =
-      window.pageYOffset !== undefined
-        ? window.pageYOffset
-        : (
-            document.documentElement ||
-            document.body.parentNode ||
-            document.body
-          ).scrollTop;
-
-    // let placePosition = (() => {
-    //   switch (this.props.direction) {
-    //     case "up":
-    //       return "top";
-    //     case "bottom":
-    //       return "bottom";
-    //     case "auto":
-    //       if (
-    //         offset.top + this.refs.widget.offsetHeight >
+    //         offset.top + this.widgetRef.offsetHeight >
     //           window.offsetHeight + scrollTop &&
-    //         this.refs.widget.offsetHeight +
-    //           this.refs.datetimepicker.offsetHeight >
-    //           offset.top
-    //       ) {
-    //         return "top";
-    //       } else {
-    //         return "bottom";
-    //       }
-    //     default:
-    //       return undefined;
-    //   }
-    // })();
-
-    // if (placePosition === "top") {
-    //   offset.top = -this.refs.widget.offsetHeight - this.clientHeight - 2;
-    //   classes.top = true;
-    //   classes.bottom = false;
-    // } else {
-    //   offset.top = 40;
-    //   classes.top = false;
-    //   classes.bottom = true;
-    // }
+    //         this.widgetRef.offsetHeight +
+    //           this.datetimepickerRef.offsetHeight >
 
     const styles = {
       display: "block",
       position: "absolute",
       top: offset.top,
-      left: offset.left,
-      // right: 40
+      left: offset.left
     };
 
     return this.setState({
@@ -455,7 +417,7 @@ class DateTimeField extends Component {
           maxDate={this.props.maxDate}
           minDate={this.props.minDate}
           mode={this.props.mode}
-          ref="widget"
+          ref={widgetRef => (this.widgetRef = widgetRef)}
           selectedDate={this.state.selectedDate}
           setSelectedDate={this.setSelectedDate}
           setSelectedHour={this.setSelectedHour}
@@ -477,7 +439,12 @@ class DateTimeField extends Component {
           widgetClasses={this.state.widgetClasses}
           widgetStyle={this.state.widgetStyle}
         />
-        <div className={"input-group date " + this.size()} ref="datetimepicker">
+        <div
+          className={"input-group date " + this.size()}
+          ref={datetimepickerRef =>
+            (this.datetimepickerRef = datetimepickerRef)
+          }
+        >
           <input
             className="form-control"
             onChange={this.onChange}
@@ -489,7 +456,9 @@ class DateTimeField extends Component {
             className="input-group-addon"
             onBlur={this.onBlur}
             onClick={this.onClick}
-            ref="openCalendarButton"
+            ref={openCalendarButtonRef =>
+              (this.openCalendarButtonRef = openCalendarButtonRef)
+            }
           >
             <span className={classnames("glyphicon", this.state.buttonIcon)} />
           </span>
