@@ -36,7 +36,7 @@ class DateTimeField extends Component {
       display: "block",
       position: "absolute",
       left: -9999,
-      zIndex: "9999 !important"
+      zIndex: "1999 !important"
     },
     viewDate: moment(this.props.dateTime, this.props.format, true).startOf(
       "month"

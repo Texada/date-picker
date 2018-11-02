@@ -340,7 +340,7 @@ function (_Component) {
         display: "block",
         position: "absolute",
         left: -9999,
-        zIndex: "9999 !important"
+        zIndex: "1999 !important"
       },
       viewDate: __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true).startOf("month"),
       selectedDate: __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true),
