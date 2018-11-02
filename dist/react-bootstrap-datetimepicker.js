@@ -293,8 +293,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var WIDGET_WIDTH = 250;
-var WIDGET_HEIGHT = 287.5;
+var WIDGET_WIDTH = 266;
+var WIDGET_HEIGHT = 292;
 
 var DateTimeField =
 /*#__PURE__*/
