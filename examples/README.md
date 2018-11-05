@@ -1,4 +1,4 @@
-== React Bootstrap Datetimepicker Examples
+# React Bootstrap Datetimepicker Examples
 
 1. Clone this repo
 2. Run npm install
