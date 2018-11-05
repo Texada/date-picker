@@ -1,11 +1,11 @@
 {
-  "name": "react-bootstrap-datetimepicker",
-  "version": "0.1.2",
+  "name": "@texada/date-picker",
+  "version": "0.1.5",
   "description": "A bootstrap datetime picker component for React.js",
   "homepage": "http://dev.quri.com/react-bootstrap-datetimepicker/",
   "repository": {
     "type": "git",
-    "url": "http://github.com/quri/react-bootstrap-datetimepicker"
+    "url": "git+ssh://git@github.com/Texada/react-bootstrap-datetimepicker.git"
   },
   "main": "./lib/DateTimeField.js",
   "scripts": {
@@ -99,5 +99,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2"
+  },
+  "bugs": {
+    "url": "https://github.com/Texada/react-bootstrap-datetimepicker/issues"
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
   }
 }
