@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { createPortal } from "react-dom";
 import { PropTypes } from "prop-types";
 import moment from "moment";
@@ -420,7 +420,7 @@ class DateTimeField extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         {this.renderOverlay()}
         <DateTimePicker
           addDecade={this.addDecade}
@@ -478,7 +478,7 @@ class DateTimeField extends Component {
             <span className={classnames("glyphicon", this.state.buttonIcon)} />
           </span>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

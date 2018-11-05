@@ -638,7 +638,7 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, this.renderOverlay(), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__DateTimePicker_js__["a" /* default */], {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_0_react__["Fragment"], null, this.renderOverlay(), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__DateTimePicker_js__["a" /* default */], {
         addDecade: this.addDecade,
         addHour: this.addHour,
         addMinute: this.addMinute,
@@ -1504,17 +1504,17 @@ function (_Component) {
     });
 
     var viewModes = {
-      "days": {
+      days: {
         daysDisplayed: true,
         monthsDisplayed: false,
         yearsDisplayed: false
       },
-      "months": {
+      months: {
         daysDisplayed: false,
         monthsDisplayed: true,
         yearsDisplayed: false
       },
-      "years": {
+      years: {
         daysDisplayed: false,
         monthsDisplayed: false,
         yearsDisplayed: true
@@ -1654,7 +1654,10 @@ function (_Component) {
           classes.disabled = true;
         }
 
-        if (_this.props.daysOfWeekDisabled.length > 0) classes.disabled = _this.props.daysOfWeekDisabled.indexOf(prevMonth.day()) !== -1;
+        if (_this.props.daysOfWeekDisabled.length > 0) {
+          classes.disabled = _this.props.daysOfWeekDisabled.indexOf(prevMonth.day()) !== -1;
+        }
+
         cells.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", {
           className: __WEBPACK_IMPORTED_MODULE_3_classnames___default()(classes),
           key: prevMonth.month() + "-" + prevMonth.date(),
@@ -1797,16 +1800,16 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateTimePickerMonths)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderMonths", function () {
-      var classes, i, month, months, monthsShort;
-      month = _this.props.selectedDate.month();
-      monthsShort = __WEBPACK_IMPORTED_MODULE_3_moment___default.a.monthsShort();
-      i = 0;
-      months = [];
+      var month = _this.props.selectedDate.month();
+
+      var monthsShort = __WEBPACK_IMPORTED_MODULE_3_moment___default.a.monthsShort();
+      var i = 0,
+          months = [];
 
       while (i < 12) {
-        classes = {
+        var classes = {
           month: true,
-          "active": i === month && _this.props.viewDate.year() === _this.props.selectedDate.year()
+          active: i === month && _this.props.viewDate.year() === _this.props.selectedDate.year()
         };
         months.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
           className: __WEBPACK_IMPORTED_MODULE_2_classnames___default()(classes),
@@ -1915,17 +1918,19 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DateTimePickerYears)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderYears", function () {
-      var classes, i, year, years;
-      years = [];
-      year = parseInt(_this.props.viewDate.year() / 10, 10) * 10;
+      var years = [];
+      var year = parseInt(_this.props.viewDate.year() / 10, 10) * 10;
       year--;
-      i = -1;
+
+      var selectedYear = _this.props.selectedDate.year();
+
+      var i = -1;
 
       while (i < 11) {
-        classes = {
+        var classes = {
           year: true,
-          old: i === -1 | i === 10,
-          active: _this.props.selectedDate.year() === year
+          old: i === -1 || i === 10,
+          active: selectedYear === year
         };
         years.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
           className: __WEBPACK_IMPORTED_MODULE_2_classnames___default()(classes),
@@ -1945,8 +1950,7 @@ function (_Component) {
   _createClass(DateTimePickerYears, [{
     key: "render",
     value: function render() {
-      var year;
-      year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
+      var year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         className: "datepicker-years",
         style: {
