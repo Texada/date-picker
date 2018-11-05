@@ -1,4 +1,4 @@
-# date-picker
+# @texada/date-picker
 
 
 This project is a fork of https://github.com/quri/react-bootstrap-datetimepicker
