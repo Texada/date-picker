@@ -2,7 +2,6 @@
   "name": "@texada/date-picker",
   "version": "0.1.4",
   "description": "A bootstrap datetime picker component for React.js",
-  "homepage": "http://dev.quri.com/react-bootstrap-datetimepicker/",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Texada/react-bootstrap-datetimepicker.git"
