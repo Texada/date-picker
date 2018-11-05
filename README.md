@@ -1,12 +1,10 @@
 # date-picker
-===============================
 
 
 This project is a fork of https://github.com/quri/react-bootstrap-datetimepicker
 This project is a port of https://github.com/Eonasdan/bootstrap-datetimepicker for React.js
 
-Usage
-===============================
+## Usage
 
 Installation :
 ```
@@ -25,11 +23,9 @@ render: function() {
 ```
 See [Examples](examples/) for more details.
 
-API
-===============================
+## API
 
-DateTimeField
-========
+### DateTimeField
 
 | Name         | Type    | Default | Description |
 | ------------ | ------- | ------- | ----------- |
