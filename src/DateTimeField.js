@@ -468,7 +468,7 @@ class DateTimeField extends Component {
             {...this.props.inputProps}
           />
           <span
-            className="input-group-addon"
+            className="input-group-addon btn-open-calendar"
             onBlur={this.onBlur}
             onClick={this.onClick}
             ref={openCalendarButtonRef =>
@@ -513,7 +513,7 @@ DateTimeField.propTypes = {
   maxDate: PropTypes.object,
   direction: PropTypes.oneOf(["up", "bottom", "auto", undefined]),
   showToday: PropTypes.bool,
-  viewMode: PropTypes.string,
+  viewMode: PropTypes.oneOf(["days", "months", "years", "date"]),
   zIndex: PropTypes.number,
   size: PropTypes.oneOf([
     Constants.SIZE_SMALL,

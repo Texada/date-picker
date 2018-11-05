@@ -44,3 +44,7 @@
 .ranges li.active {
   background-color: #337ab7;
 }
+
+.btn-open-calendar {
+  cursor: pointer;
+}

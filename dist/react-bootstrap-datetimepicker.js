@@ -682,7 +682,7 @@ function (_Component) {
         type: "text",
         value: this.state.inputValue
       }, this.props.inputProps)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
-        className: "input-group-addon",
+        className: "input-group-addon btn-open-calendar",
         onBlur: this.onBlur,
         onClick: this.onClick,
         ref: function ref(openCalendarButtonRef) {
@@ -722,7 +722,7 @@ DateTimeField.propTypes = {
   maxDate: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].object,
   direction: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].oneOf(["up", "bottom", "auto", undefined]),
   showToday: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].bool,
-  viewMode: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].string,
+  viewMode: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].oneOf(["days", "months", "years", "date"]),
   zIndex: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].number,
   size: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].oneOf([__WEBPACK_IMPORTED_MODULE_6__Constants_js__["a" /* default */].SIZE_SMALL, __WEBPACK_IMPORTED_MODULE_6__Constants_js__["a" /* default */].SIZE_MEDIUM, __WEBPACK_IMPORTED_MODULE_6__Constants_js__["a" /* default */].SIZE_LARGE]),
   daysOfWeekDisabled: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].arrayOf(__WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].number)
