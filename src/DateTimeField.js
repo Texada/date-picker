@@ -50,36 +50,42 @@ class DateTimeField extends Component {
           )
   };
 
-  componentWillReceiveProps = nextProps => {
+  componentDidUpdate = prevProps => {
+    let didChange = false;
     let state = {};
-    if (nextProps.inputFormat !== this.props.inputFormat) {
-      state.inputFormat = nextProps.inputFormat;
+    if (this.props.inputFormat !== prevProps.inputFormat) {
+      didChange = true;
+      state.inputFormat = this.props.inputFormat;
       state.inputValue = moment(
-        nextProps.dateTime,
-        nextProps.format,
+        this.props.dateTime,
+        this.props.format,
         true
-      ).format(nextProps.inputFormat);
+      ).format(this.props.inputFormat);
     }
 
     if (
-      nextProps.dateTime !== this.props.dateTime &&
-      moment(nextProps.dateTime, nextProps.format, true).isValid()
+      this.props.dateTime !== prevProps.dateTime &&
+      moment(this.props.dateTime, this.props.format, true).isValid()
     ) {
+      didChange = true;
       state.viewDate = moment(
-        nextProps.dateTime,
-        nextProps.format,
+        this.props.dateTime,
+        this.props.format,
         true
       ).startOf("month");
-      state.selectedDate = moment(nextProps.dateTime, nextProps.format, true);
+      state.selectedDate = moment(this.props.dateTime, this.props.format, true);
       state.inputValue = moment(
-        nextProps.dateTime,
-        nextProps.format,
+        this.props.dateTime,
+        this.props.format,
         true
       ).format(
-        nextProps.inputFormat ? nextProps.inputFormat : this.state.inputFormat
+        this.props.inputFormat ? this.props.inputFormat : this.state.inputFormat
       );
     }
-    return this.setState(state);
+
+    if (didChange) {
+      this.setState(state);
+    }
   };
 
   onChange = event => {
