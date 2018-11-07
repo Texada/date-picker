@@ -347,21 +347,26 @@ function (_Component) {
       inputValue: typeof _this.props.defaultText !== "undefined" ? _this.props.defaultText : __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true).format(_this.resolvePropsInputFormat())
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillReceiveProps", function (nextProps) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
+      var didChange = false;
       var state = {};
 
-      if (nextProps.inputFormat !== _this.props.inputFormat) {
-        state.inputFormat = nextProps.inputFormat;
-        state.inputValue = __WEBPACK_IMPORTED_MODULE_3_moment___default()(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat);
+      if (_this.props.inputFormat !== prevProps.inputFormat) {
+        didChange = true;
+        state.inputFormat = _this.props.inputFormat;
+        state.inputValue = __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true).format(_this.props.inputFormat);
       }
 
-      if (nextProps.dateTime !== _this.props.dateTime && __WEBPACK_IMPORTED_MODULE_3_moment___default()(nextProps.dateTime, nextProps.format, true).isValid()) {
-        state.viewDate = __WEBPACK_IMPORTED_MODULE_3_moment___default()(nextProps.dateTime, nextProps.format, true).startOf("month");
-        state.selectedDate = __WEBPACK_IMPORTED_MODULE_3_moment___default()(nextProps.dateTime, nextProps.format, true);
-        state.inputValue = __WEBPACK_IMPORTED_MODULE_3_moment___default()(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat ? nextProps.inputFormat : _this.state.inputFormat);
+      if (_this.props.dateTime !== prevProps.dateTime && __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true).isValid()) {
+        didChange = true;
+        state.viewDate = __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true).startOf("month");
+        state.selectedDate = __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true);
+        state.inputValue = __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true).format(_this.props.inputFormat ? _this.props.inputFormat : _this.state.inputFormat);
       }
 
-      return _this.setState(state);
+      if (didChange) {
+        _this.setState(state);
+      }
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (event) {
