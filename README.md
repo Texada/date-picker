@@ -22,7 +22,7 @@ render: function() {
   return <DateTimeField />;
 }
 ```
-See [Examples](examples/) for more details.
+See [Examples](https://github.com/Texada/react-bootstrap-datetimepicker/tree/portal/examples) for more details.
 
 ## API
 
