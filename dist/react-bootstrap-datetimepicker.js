@@ -689,13 +689,16 @@ function (_Component) {
         onChange: this.onChange,
         type: "text",
         value: this.state.inputValue
-      }, this.props.inputProps)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
-        className: "input-group-addon btn-open-calendar",
-        onBlur: this.onBlur,
-        onClick: this.onClick,
+      }, this.props.inputProps, {
+        disabled: this.props.disabled
+      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
+        className: "input-group-addon btn-open-calendar ".concat(this.props.disabled ? "disabled" : ""),
+        onBlur: this.props.disabled ? function () {} : this.onBlur,
+        onClick: this.props.disabled ? function () {} : this.onClick,
         ref: function ref(openCalendarButtonRef) {
           return _this2.openCalendarButtonRef = openCalendarButtonRef;
-        }
+        },
+        disabled: this.props.disabled
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
         className: __WEBPACK_IMPORTED_MODULE_4_classnames___default()("glyphicon", this.state.buttonIcon)
       }))));
@@ -716,7 +719,8 @@ DateTimeField.defaultProps = {
   zIndex: 999,
   onChange: function onChange(x) {
     console.log(x);
-  }
+  },
+  disabled: false
 };
 DateTimeField.propTypes = {
   /** Represents the inital dateTime, this string is then parsed by moment.js */
@@ -760,7 +764,10 @@ DateTimeField.propTypes = {
   size: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].oneOf([__WEBPACK_IMPORTED_MODULE_6__Constants_js__["a" /* default */].SIZE_SMALL, __WEBPACK_IMPORTED_MODULE_6__Constants_js__["a" /* default */].SIZE_MEDIUM, __WEBPACK_IMPORTED_MODULE_6__Constants_js__["a" /* default */].SIZE_LARGE]),
 
   /** Disables clicking on some days. Goes from 0 (Sunday) to 6 (Saturday). */
-  daysOfWeekDisabled: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].arrayOf(__WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].number)
+  daysOfWeekDisabled: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].arrayOf(__WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].number),
+
+  /** Disables the date picker */
+  disabled: __WEBPACK_IMPORTED_MODULE_2_prop_types__["PropTypes"].bool
 };
 /* harmony default export */ __webpack_exports__["default"] = (DateTimeField);
 

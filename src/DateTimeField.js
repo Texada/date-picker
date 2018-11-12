@@ -475,14 +475,18 @@ class DateTimeField extends Component {
             type="text"
             value={this.state.inputValue}
             {...this.props.inputProps}
+            disabled={this.props.disabled}
           />
           <span
-            className="input-group-addon btn-open-calendar"
-            onBlur={this.onBlur}
-            onClick={this.onClick}
+            className={`input-group-addon btn-open-calendar ${
+              this.props.disabled ? "disabled" : ""
+            }`}
+            onBlur={this.props.disabled ? () => {} : this.onBlur}
+            onClick={this.props.disabled ? () => {} : this.onClick}
             ref={openCalendarButtonRef =>
               (this.openCalendarButtonRef = openCalendarButtonRef)
             }
+            disabled={this.props.disabled}
           >
             <span className={classnames("glyphicon", this.state.buttonIcon)} />
           </span>
@@ -503,7 +507,8 @@ DateTimeField.defaultProps = {
   zIndex: 999,
   onChange: x => {
     console.log(x);
-  }
+  },
+  disabled: false
 };
 
 DateTimeField.propTypes = {
@@ -543,7 +548,9 @@ DateTimeField.propTypes = {
     Constants.SIZE_LARGE
   ]),
   /** Disables clicking on some days. Goes from 0 (Sunday) to 6 (Saturday). */
-  daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number)
+  daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number),
+  /** Disables the date picker */
+  disabled: PropTypes.bool
 };
 
 export default DateTimeField;
