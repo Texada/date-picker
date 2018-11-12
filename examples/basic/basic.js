@@ -55,6 +55,7 @@ class Basic extends Component {
                   Example with default Text
                   <DateTimeField
                     defaultText="Please select a date"
+                    disabled
                   />
                   <pre> {'<DateTimeField defaultText="Please select a date" />'} </pre>
                 </div>

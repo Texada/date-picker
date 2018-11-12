@@ -464,11 +464,14 @@ class DateTimeField extends Component {
             type="text"
             value={this.state.inputValue}
             {...this.props.inputProps}
+            disabled={this.props.disabled}
           />
           <span
-            className="input-group-addon"
-            onBlur={this.onBlur}
-            onClick={this.onClick}
+            className={`input-group-addon btn-open-calendar ${
+              this.props.disabled ? "disabled" : ""
+            }`}
+            onBlur={this.props.disabled ? () => {} : this.onBlur}
+            onClick={this.props.disabled ? () => {} : this.onClick}
             ref="dtpbutton"
           >
             <span className={classnames("glyphicon", this.state.buttonIcon)} />
@@ -490,7 +493,8 @@ DateTimeField.defaultProps = {
   zIndex: 999,
   onChange: x => {
     console.log(x);
-  }
+  },
+  disabled: false
 };
 
 DateTimeField.propTypes = {
@@ -516,7 +520,8 @@ DateTimeField.propTypes = {
     Constants.SIZE_MEDIUM,
     Constants.SIZE_LARGE
   ]),
-  daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number)
+  daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number),
+  disabled: PropTypes.bool
 };
 
 export default DateTimeField;
