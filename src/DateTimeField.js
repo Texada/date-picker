@@ -9,6 +9,9 @@ import Constants from "./Constants.js";
 const WIDGET_WIDTH = 266;
 const WIDGET_HEIGHT = 292;
 
+/**
+ * @augments {Component<{x: string, y:number, test:string}}, State>}
+ */
 class DateTimeField extends Component {
   resolvePropsInputFormat = () => {
     if (this.props.inputFormat) {
@@ -504,28 +507,42 @@ DateTimeField.defaultProps = {
 };
 
 DateTimeField.propTypes = {
+  /** Represents the inital dateTime, this string is then parsed by moment.js */
   dateTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Callback trigger when the date changes. x is the new datetime value. */
   onChange: PropTypes.func,
+  /** Defines the format moment.js should use to parse and output the date to onChange */
   format: PropTypes.string,
+  /** Defines additional attributes for the input element of the component. */
   inputProps: PropTypes.object,
+  /** Defines the way the date is represented in the HTML input. It must be a format understanable by moment.js */
   inputFormat: PropTypes.string,
+  /** Sets the initial value. Could be an empty string, or helper text. */
   defaultText: PropTypes.string,
+  /** Allows to selectively display only the time picker ('time') or the date picker ('date') */
   mode: PropTypes.oneOf([
     Constants.MODE_DATE,
     Constants.MODE_DATETIME,
     Constants.MODE_TIME
   ]),
+  /** The earliest date allowed for entry in the calendar view. */
   minDate: PropTypes.object,
+  /** The latest date allowed for entry in the calendar view. */
   maxDate: PropTypes.object,
   direction: PropTypes.oneOf(["up", "bottom", "auto", undefined]),
+  /** Highlights today's date */
   showToday: PropTypes.bool,
+  /** The default view to display when the picker is shown. ('years', 'months', 'days') */
   viewMode: PropTypes.oneOf(["days", "months", "years", "date"]),
+  /** Defines the z-index of the modal overlay */
   zIndex: PropTypes.number,
+  /** Changes the size of the date picker input field. Sizes: "sm", "md", "lg" */
   size: PropTypes.oneOf([
     Constants.SIZE_SMALL,
     Constants.SIZE_MEDIUM,
     Constants.SIZE_LARGE
   ]),
+  /** Disables clicking on some days. Goes from 0 (Sunday) to 6 (Saturday). */
   daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number)
 };
 
