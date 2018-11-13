@@ -49,7 +49,12 @@
   cursor: pointer;
 }
 
+.input-group.date .input-group-addon.btn-open-calendar {
+  background-color: white;
+}
+
 .input-group.date .input-group-addon.btn-open-calendar.disabled,
 .input-group.date .input-group-addon.btn-open-calendar.disabled span {
   cursor: default;
+  background-color: #eee;
 }
