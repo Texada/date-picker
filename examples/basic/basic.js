@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import DateTimeField from "../../src/DateTimeField";
 import moment from "moment";
 import ParentComponent from "./ParentComponent";
+import ModalExample from "./ModalExample";
 
 class Basic extends Component {
   render() {
@@ -123,6 +124,7 @@ class Basic extends Component {
             <pre> {'<DateTimeField mode="date" />'} </pre>
           </div>
         </div>
+        <ModalExample />
       </div>
     );
   }
