@@ -655,21 +655,47 @@ DateTimeField.defaultProps = {
   disabled: false
 };
 DateTimeField.propTypes = {
+  /** Represents the inital dateTime, this string is then parsed by moment.js */
   dateTime: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].oneOfType([__WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].string, __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].number]),
-  onChange: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].func,
+
+  /** Defines the format moment.js should use to parse and output the date to onChange */
   format: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].string,
+
+  /** Defines additional attributes for the input element of the component. */
   inputProps: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].object,
+
+  /** Defines the way the date is represented in the HTML input. It must be a format understanable by moment.js */
   inputFormat: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].string,
+
+  /** Sets the initial value. Could be an empty string, or helper text. */
   defaultText: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].string,
+
+  /** Allows to selectively display only the time picker ('time') or the date picker ('date') */
   mode: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].oneOf([__WEBPACK_IMPORTED_MODULE_5__Constants_js__["a" /* default */].MODE_DATE, __WEBPACK_IMPORTED_MODULE_5__Constants_js__["a" /* default */].MODE_DATETIME, __WEBPACK_IMPORTED_MODULE_5__Constants_js__["a" /* default */].MODE_TIME]),
+
+  /** The earliest date allowed for entry in the calendar view. */
   minDate: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].object,
+
+  /** The latest date allowed for entry in the calendar view. */
   maxDate: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].object,
   direction: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].string,
+
+  /** Highlights today's date */
   showToday: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].bool,
-  viewMode: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].string,
+
+  /** The default view to display when the picker is shown. ('years', 'months', 'days') */
+  viewMode: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].oneOf(["days", "months", "years", "date"]),
+
+  /** Defines the z-index of the modal overlay */
   zIndex: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].number,
+
+  /** Changes the size of the date picker input field. Sizes: "sm", "md", "lg" */
   size: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].oneOf([__WEBPACK_IMPORTED_MODULE_5__Constants_js__["a" /* default */].SIZE_SMALL, __WEBPACK_IMPORTED_MODULE_5__Constants_js__["a" /* default */].SIZE_MEDIUM, __WEBPACK_IMPORTED_MODULE_5__Constants_js__["a" /* default */].SIZE_LARGE]),
+
+  /** Disables clicking on some days. Goes from 0 (Sunday) to 6 (Saturday). */
   daysOfWeekDisabled: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].number),
+
+  /** Disables the date picker */
   disabled: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].bool
 };
 /* harmony default export */ __webpack_exports__["default"] = (DateTimeField);
