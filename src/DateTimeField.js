@@ -500,6 +500,8 @@ DateTimeField.defaultProps = {
 DateTimeField.propTypes = {
   /** Represents the inital dateTime, this string is then parsed by moment.js */
   dateTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Callback trigger when the date changes. x is the new datetime value. */
+  onChange: PropTypes.func,
   /** Defines the format moment.js should use to parse and output the date to onChange */
   format: PropTypes.string,
   /** Defines additional attributes for the input element of the component. */

@@ -658,6 +658,9 @@ DateTimeField.propTypes = {
   /** Represents the inital dateTime, this string is then parsed by moment.js */
   dateTime: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].oneOfType([__WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].string, __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].number]),
 
+  /** Callback trigger when the date changes. x is the new datetime value. */
+  onChange: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].func,
+
   /** Defines the format moment.js should use to parse and output the date to onChange */
   format: __WEBPACK_IMPORTED_MODULE_1_prop_types__["PropTypes"].string,
 
