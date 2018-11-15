@@ -3,7 +3,7 @@ import DateTimeField from "../../src/DateTimeField";
 import moment from "moment";
 import Modal from "react-modal";
 
-Modal.setAppElement("body");
+Modal.setAppElement("#example");
 
 class ModalExample extends Component {
   state = { showModal: false };
@@ -28,11 +28,22 @@ class ModalExample extends Component {
               marginRight: "-50%",
               transform: "translate(-50%, -50%)",
               overflowY: "auto",
-              height: 120
+              height: 120,
+              width: "40vw"
             }
           }}
           isOpen={this.state.showModal}
         >
+          <div
+            style={{
+              width: "50%",
+              float: "left",
+              marginRight: 5
+            }}
+          >
+            <DateTimeField mode="date" />
+          </div>
+  
           <DateTimeField mode="date" />
           <br />
           <button onClick={() => this.setState({ showModal: false })}>

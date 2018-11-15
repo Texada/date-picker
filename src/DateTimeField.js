@@ -9,9 +9,6 @@ import Constants from "./Constants.js";
 const WIDGET_WIDTH = 266;
 const WIDGET_HEIGHT = 292;
 
-/**
- * @augments {Component<{x: string, y:number, test:string}}, State>}
- */
 class DateTimeField extends Component {
   resolvePropsInputFormat = () => {
     if (this.props.inputFormat) {
@@ -39,7 +36,7 @@ class DateTimeField extends Component {
       display: "block",
       position: "absolute",
       left: -9999,
-      zIndex: "1999 !important"
+      zIndex: this.props.zIndex + 1
     },
     viewDate: moment(this.props.dateTime, this.props.format, true).startOf(
       "month"
@@ -370,6 +367,7 @@ class DateTimeField extends Component {
     }
 
     const styles = {
+      ...this.state.widgetStyle,
       display: "block",
       position: "absolute",
       top: offset.top,
@@ -481,7 +479,6 @@ class DateTimeField extends Component {
             className={`input-group-addon btn-open-calendar ${
               this.props.disabled ? "disabled" : ""
             }`}
-            onBlur={this.props.disabled ? () => {} : this.onBlur}
             onClick={this.props.disabled ? () => {} : this.onClick}
             ref={openCalendarButtonRef =>
               (this.openCalendarButtonRef = openCalendarButtonRef)
@@ -504,10 +501,8 @@ DateTimeField.defaultProps = {
   daysOfWeekDisabled: [],
   size: Constants.SIZE_MEDIUM,
   mode: Constants.MODE_DATETIME,
-  zIndex: 999,
-  onChange: x => {
-    console.log(x);
-  },
+  zIndex: 4000,
+  onChange: () => {},
   disabled: false
 };
 

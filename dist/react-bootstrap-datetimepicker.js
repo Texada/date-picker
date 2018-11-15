@@ -295,9 +295,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var WIDGET_WIDTH = 266;
 var WIDGET_HEIGHT = 292;
-/**
- * @augments {Component<{x: string, y:number, test:string}}, State>}
- */
 
 var DateTimeField =
 /*#__PURE__*/
@@ -343,7 +340,7 @@ function (_Component) {
         display: "block",
         position: "absolute",
         left: -9999,
-        zIndex: "1999 !important"
+        zIndex: _this.props.zIndex + 1
       },
       viewDate: __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true).startOf("month"),
       selectedDate: __WEBPACK_IMPORTED_MODULE_3_moment___default()(_this.props.dateTime, _this.props.format, true),
@@ -581,12 +578,13 @@ function (_Component) {
         offset.top -= _offscreen + _screenPadding;
       }
 
-      var styles = {
+      var styles = _objectSpread({}, _this.state.widgetStyle, {
         display: "block",
         position: "absolute",
         top: offset.top,
         left: offset.left
-      };
+      });
+
       return _this.setState({
         widgetStyle: styles,
         widgetClasses: classes
@@ -693,7 +691,6 @@ function (_Component) {
         disabled: this.props.disabled
       })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
         className: "input-group-addon btn-open-calendar ".concat(this.props.disabled ? "disabled" : ""),
-        onBlur: this.props.disabled ? function () {} : this.onBlur,
         onClick: this.props.disabled ? function () {} : this.onClick,
         ref: function ref(openCalendarButtonRef) {
           return _this2.openCalendarButtonRef = openCalendarButtonRef;
@@ -716,10 +713,8 @@ DateTimeField.defaultProps = {
   daysOfWeekDisabled: [],
   size: __WEBPACK_IMPORTED_MODULE_6__Constants_js__["a" /* default */].SIZE_MEDIUM,
   mode: __WEBPACK_IMPORTED_MODULE_6__Constants_js__["a" /* default */].MODE_DATETIME,
-  zIndex: 999,
-  onChange: function onChange(x) {
-    console.log(x);
-  },
+  zIndex: 4000,
+  onChange: function onChange() {},
   disabled: false
 };
 DateTimeField.propTypes = {
