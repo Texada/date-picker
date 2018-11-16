@@ -1,0 +1,1 @@
+npm publish --acess public

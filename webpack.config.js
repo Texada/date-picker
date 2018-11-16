@@ -7,16 +7,6 @@ var plugins = [
   })
 ];
 
-if (process.env.COMPRESS) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    })
-  );
-}
-
 module.exports = {
 
   entry: ["./src/DateTimeField.js"],
@@ -39,8 +29,8 @@ module.exports = {
   },
 
   module: {
-    loaders: [
-      { test: /\.js?$/, exclude: /node_modules/, loader: "babel-loader" }
+    rules: [
+      { test: /\.js?$/, exclude: /node_modules/, use: "babel-loader" }
     ]
   },
 
