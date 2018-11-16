@@ -37,7 +37,7 @@ class Basic extends Component {
 
   handleChange = (newDate) => {
     console.log("newDate", newDate);
-    return this.setState({date: newDate});
+    this.setState({date: newDate});
   }
 
   render() {

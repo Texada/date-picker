@@ -31,14 +31,14 @@ class DateTimePickerDate extends Component {
   }
 
   showMonths = () => {
-    return this.setState({
+    this.setState({
       daysDisplayed: false,
       monthsDisplayed: true
     });
   };
 
   showYears = () => {
-    return this.setState({
+    this.setState({
       monthsDisplayed: false,
       yearsDisplayed: true
     });
@@ -46,7 +46,7 @@ class DateTimePickerDate extends Component {
 
   setViewYear = e => {
     this.props.setViewYear(e.target.innerHTML);
-    return this.setState({
+    this.setState({
       yearsDisplayed: false,
       monthsDisplayed: true
     });
@@ -54,7 +54,7 @@ class DateTimePickerDate extends Component {
 
   setViewMonth = e => {
     this.props.setViewMonth(e.target.innerHTML);
-    return this.setState({
+    this.setState({
       monthsDisplayed: false,
       daysDisplayed: true
     });

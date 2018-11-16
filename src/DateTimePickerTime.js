@@ -11,20 +11,20 @@ class DateTimePickerTime extends Component {
   };
 
   goBack = () => {
-    return this.setState({
+    this.setState({
       minutesDisplayed: false,
       hoursDisplayed: false
     });
   };
 
   showMinutes = () => {
-    return this.setState({
+    this.setState({
       minutesDisplayed: true
     });
   };
 
   showHours = () => {
-    return this.setState({
+    this.setState({
       hoursDisplayed: true
     });
   };

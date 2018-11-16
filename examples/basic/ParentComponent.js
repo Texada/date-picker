@@ -12,20 +12,22 @@ class ParentComponent extends Component {
     };
   }
 
-  handleChange = (newDate) => {
+  handleChange = newDate => {
     console.log("newDate", newDate);
-    return this.setState({date: newDate});
-  }
+    this.setState({ date: newDate });
+  };
 
   render() {
-    const {date, format, mode, inputFormat} = this.state;
-    return (<DateTimeField
-      dateTime={date}
-      format={format}
-      inputFormat={inputFormat}
-      onChange={this.handleChange}
-      viewMode={mode}
-    />);
+    const { date, format, mode, inputFormat } = this.state;
+    return (
+      <DateTimeField
+        dateTime={date}
+        format={format}
+        inputFormat={inputFormat}
+        onChange={this.handleChange}
+        viewMode={mode}
+      />
+    );
   }
 }
 
