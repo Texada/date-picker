@@ -43,5 +43,5 @@ See [Examples](https://github.com/Texada/react-bootstrap-datetimepicker/tree/por
 | **maxDate** | moment | undefined | The latest date allowed for entry in the calendar view. |
 | **mode** | string | undefined | Allows to selectively display only the time picker ('time') or the date picker ('date') |
 | **defaultText** | string | {dateTime} | Sets the initial value. Could be an empty string, or helper text. |
-| **zIndex** | number | 999 | Defines the z-index of the modal overlay |
+| **zIndex** | number | 4000 | Defines the z-index of the modal overlay |
 | **disabled** | boolean | false | Disables the date picker |
