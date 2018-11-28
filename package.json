@@ -1,6 +1,6 @@
 {
   "name": "@texada/date-picker",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A bootstrap datetime picker component for React.js",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0",
     "classnames": ">=2.0.0",
-    "moment": ">=2.8.2",
+    "moment": ">=2.22.0",
     "prop-types": ">=15.0.0"
   },
   "jest": {
@@ -86,7 +86,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
-    "moment": "^2.8.2",
+    "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.3.2",
     "react-addons-test-utils": "^15.6.2",

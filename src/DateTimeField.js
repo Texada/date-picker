@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { createPortal } from "react-dom";
 import { PropTypes } from "prop-types";
 import moment from "moment";
@@ -97,7 +97,7 @@ class DateTimeField extends Component {
       });
     }
 
-    return this.setState(
+    this.setState(
       {
         inputValue: value
       },
@@ -127,7 +127,7 @@ class DateTimeField extends Component {
       else if (target.className.indexOf("old") >= 0)
         month = this.state.viewDate.month() - 1;
       else month = this.state.viewDate.month();
-      return this.setState(
+      this.setState(
         {
           selectedDate: this.state.viewDate
             .clone()
@@ -141,7 +141,7 @@ class DateTimeField extends Component {
           this.props.onChange(
             this.state.selectedDate.format(this.props.format)
           );
-          return this.setState({
+          this.setState({
             inputValue: this.state.selectedDate.format(this.state.inputFormat)
           });
         }
@@ -150,7 +150,7 @@ class DateTimeField extends Component {
   };
 
   setSelectedHour = e => {
-    return this.setState(
+    this.setState(
       {
         selectedDate: this.state.selectedDate
           .clone()
@@ -160,7 +160,7 @@ class DateTimeField extends Component {
       function() {
         this.closePicker();
         this.props.onChange(this.state.selectedDate.format(this.props.format));
-        return this.setState({
+        this.setState({
           inputValue: this.state.selectedDate.format(this.state.inputFormat)
         });
       }
@@ -168,7 +168,7 @@ class DateTimeField extends Component {
   };
 
   setSelectedMinute = e => {
-    return this.setState(
+    this.setState(
       {
         selectedDate: this.state.selectedDate
           .clone()
@@ -178,7 +178,7 @@ class DateTimeField extends Component {
       function() {
         this.closePicker();
         this.props.onChange(this.state.selectedDate.format(this.props.format));
-        return this.setState({
+        this.setState({
           inputValue: this.state.selectedDate.format(this.state.inputFormat)
         });
       }
@@ -186,25 +186,25 @@ class DateTimeField extends Component {
   };
 
   setViewMonth = month => {
-    return this.setState({
+    this.setState({
       viewDate: this.state.viewDate.clone().month(month)
     });
   };
 
   setViewYear = year => {
-    return this.setState({
+    this.setState({
       viewDate: this.state.viewDate.clone().year(year)
     });
   };
 
   addMinute = () => {
-    return this.setState(
+    this.setState(
       {
         selectedDate: this.state.selectedDate.clone().add(1, "minutes")
       },
       function() {
         this.props.onChange(this.state.selectedDate.format(this.props.format));
-        return this.setState({
+        this.setState({
           inputValue: this.state.selectedDate.format(
             this.resolvePropsInputFormat()
           )
@@ -214,13 +214,13 @@ class DateTimeField extends Component {
   };
 
   addHour = () => {
-    return this.setState(
+    this.setState(
       {
         selectedDate: this.state.selectedDate.clone().add(1, "hours")
       },
       function() {
         this.props.onChange(this.state.selectedDate.format(this.props.format));
-        return this.setState({
+        this.setState({
           inputValue: this.state.selectedDate.format(
             this.resolvePropsInputFormat()
           )
@@ -230,31 +230,31 @@ class DateTimeField extends Component {
   };
 
   addMonth = () => {
-    return this.setState({
+    this.setState({
       viewDate: this.state.viewDate.add(1, "months")
     });
   };
 
   addYear = () => {
-    return this.setState({
+    this.setState({
       viewDate: this.state.viewDate.add(1, "years")
     });
   };
 
   addDecade = () => {
-    return this.setState({
+    this.setState({
       viewDate: this.state.viewDate.add(10, "years")
     });
   };
 
   subtractMinute = () => {
-    return this.setState(
+    this.setState(
       {
         selectedDate: this.state.selectedDate.clone().subtract(1, "minutes")
       },
       () => {
         this.props.onChange(this.state.selectedDate.format(this.props.format));
-        return this.setState({
+        this.setState({
           inputValue: this.state.selectedDate.format(
             this.resolvePropsInputFormat()
           )
@@ -264,13 +264,13 @@ class DateTimeField extends Component {
   };
 
   subtractHour = () => {
-    return this.setState(
+    this.setState(
       {
         selectedDate: this.state.selectedDate.clone().subtract(1, "hours")
       },
       () => {
         this.props.onChange(this.state.selectedDate.format(this.props.format));
-        return this.setState({
+        this.setState({
           inputValue: this.state.selectedDate.format(
             this.resolvePropsInputFormat()
           )
@@ -280,19 +280,19 @@ class DateTimeField extends Component {
   };
 
   subtractMonth = () => {
-    return this.setState({
+    this.setState({
       viewDate: this.state.viewDate.subtract(1, "months")
     });
   };
 
   subtractYear = () => {
-    return this.setState({
+    this.setState({
       viewDate: this.state.viewDate.subtract(1, "years")
     });
   };
 
   subtractDecade = () => {
-    return this.setState({
+    this.setState({
       viewDate: this.state.viewDate.subtract(10, "years")
     });
   };
@@ -316,7 +316,7 @@ class DateTimeField extends Component {
   };
 
   togglePicker = () => {
-    return this.setState({
+    this.setState({
       showDatePicker: !this.state.showDatePicker,
       showTimePicker: !this.state.showTimePicker
     });
@@ -374,7 +374,7 @@ class DateTimeField extends Component {
       left: offset.left
     };
 
-    return this.setState({
+    this.setState({
       widgetStyle: styles,
       widgetClasses: classes
     });
@@ -384,7 +384,7 @@ class DateTimeField extends Component {
     let style = { ...this.state.widgetStyle };
     style.left = -9999;
     style.display = "none";
-    return this.setState({
+    this.setState({
       showPicker: false,
       widgetStyle: style
     });
@@ -427,7 +427,7 @@ class DateTimeField extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         {this.renderOverlay()}
         <DateTimePicker
           addDecade={this.addDecade}
@@ -488,7 +488,7 @@ class DateTimeField extends Component {
             <span className={classnames("glyphicon", this.state.buttonIcon)} />
           </span>
         </div>
-      </Fragment>
+      </>
     );
   }
 }
