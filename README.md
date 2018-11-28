@@ -7,18 +7,18 @@ This project is a port of https://github.com/Eonasdan/bootstrap-datetimepicker f
 
 ## Usage
 
-Installation :
+Installation:
 ```
 npm install @texada/date-picker
 ```
 
-Then
+Then:
 ```javascript
-var DateTimeField = require('@texada/date-picker');
+import DateTimeField from "@texada/date-picker";
 
 ...
 
-render: function() {
+render() {
   return <DateTimeField />;
 }
 ```
