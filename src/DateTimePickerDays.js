@@ -1,54 +1,45 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import moment from "moment";
-import classnames from "classnames";
 
 class DateTimePickerDays extends Component {
   renderDays = () => {
-    var cells,
-      classes,
-      days,
-      html,
-      month,
-      nextMonth,
-      prevMonth,
-      minDate,
-      maxDate,
-      row,
-      year;
-
-    year = this.props.viewDate.year();
-    month = this.props.viewDate.month();
-    prevMonth = this.props.viewDate.clone().subtract(1, "months");
-    days = prevMonth.daysInMonth();
+    let year = this.props.viewDate.year();
+    let month = this.props.viewDate.month();
+    let prevMonth = this.props.viewDate.clone().subtract(1, "months");
+    let days = prevMonth.daysInMonth();
     prevMonth.date(days).startOf("week");
-    nextMonth = moment(prevMonth)
+    let nextMonth = moment(prevMonth)
       .clone()
       .add(42, "d");
-    minDate = this.props.minDate
+
+    let minDate = this.props.minDate
       ? this.props.minDate.clone().subtract(1, "days")
       : this.props.minDate;
-    maxDate = this.props.maxDate
+    let maxDate = this.props.maxDate
       ? this.props.maxDate.clone()
       : this.props.maxDate;
-    html = [];
-    cells = [];
 
+    let html = [];
+    let cells = [];
+
+    let classes;
     while (prevMonth.isBefore(nextMonth)) {
-      classes = {
-        day: true
-      };
+      classes = "day";
+
+      const prevMonthYear = prevMonth.year();
       if (
-        prevMonth.year() < year ||
-        (prevMonth.year() === year && prevMonth.month() < month)
+        prevMonthYear < year ||
+        (prevMonthYear === year && prevMonth.month() < month)
       ) {
-        classes.old = true;
+        classes += " old";
       } else if (
-        prevMonth.year() > year ||
-        (prevMonth.year() === year && prevMonth.month() > month)
+        prevMonthYear > year ||
+        (prevMonthYear === year && prevMonth.month() > month)
       ) {
-        classes.new = true;
+        classes += " new";
       }
+
       if (
         prevMonth.isSame(
           moment({
@@ -58,27 +49,32 @@ class DateTimePickerDays extends Component {
           })
         )
       ) {
-        classes.active = true;
+        classes += " active";
       }
+
       if (this.props.showToday) {
         if (prevMonth.isSame(moment(), "day")) {
-          classes.today = true;
+          classes += " today";
         }
       }
+
       if (
         (minDate && prevMonth.isBefore(minDate)) ||
         (maxDate && prevMonth.isAfter(maxDate))
       ) {
-        classes.disabled = true;
+        classes += " disabled";
       }
-      if (this.props.daysOfWeekDisabled.length > 0) {
-        classes.disabled =
-          this.props.daysOfWeekDisabled.indexOf(prevMonth.day()) !== -1;
+
+      if (
+        this.props.daysOfWeekDisabled.length > 0 &&
+        this.props.daysOfWeekDisabled.indexOf(prevMonth.day()) !== -1
+      ) {
+        classes += " disabled";
       }
 
       cells.push(
         <td
-          className={classnames(classes)}
+          className={classes}
           key={prevMonth.month() + "-" + prevMonth.date()}
           onClick={this.props.setSelectedDate}
         >
@@ -92,12 +88,15 @@ class DateTimePickerDays extends Component {
           .endOf("week")
           .weekday()
       ) {
-        row = <tr key={prevMonth.month() + "-" + prevMonth.date()}>{cells}</tr>;
-        html.push(row);
+        html.push(
+          <tr key={prevMonth.month() + "-" + prevMonth.date()}>{cells}</tr>
+        );
         cells = [];
       }
+
       prevMonth.add(1, "d");
     }
+
     return html;
   };
 
