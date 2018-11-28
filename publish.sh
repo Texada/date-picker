@@ -1,1 +1,1 @@
-npm publish --acess public
+npm publish --access public
