@@ -5,7 +5,13 @@ import moment from "moment";
 import ParentComponent from "./ParentComponent";
 import ModalExample from "./ModalExample";
 
+window.moment = moment;
+
 class Basic extends Component {
+  state = {
+    date: ""
+  };
+
   render() {
     return (
       <div className="container">
@@ -122,6 +128,36 @@ class Basic extends Component {
             just date picker
             <DateTimeField mode="date" />
             <pre> {'<DateTimeField mode="date" />'} </pre>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            just date picker
+            <DateTimeField
+              mode="date"
+              dateTime={moment("2017-01-01", "YYYY-MM-DD")}
+            />
+            <pre>
+{`<DateTimeField
+  mode="date"
+  dateTime={moment("2017-01-01", "YYYY-MM-DD")}
+/>`}
+            </pre>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            controlled component
+            <DateTimeField
+              dateTime={this.state.date}
+              format={"YYYY-MM-DD"}
+              inputFormat={"YYYY/MM/DD"}
+              onChange={(date, inputValue) => {
+                console.log("controlled component", date, inputValue)
+                this.setState({ date });
+              }}
+              defaultText=""
+            />
           </div>
         </div>
         <ModalExample />
