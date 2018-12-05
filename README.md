@@ -1,5 +1,4 @@
-# @texada/date-picker
-
+# @texada/date-picker ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square) ![npm (scoped)](https://img.shields.io/npm/v/@texada/date-picker.svg?style=flat-square) ![](https://img.shields.io/badge/react-%3E%3D%2016.1.0-brightgreen.svg?style=flat-square) ![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@texada/date-picker.svg?style=flat-square)
 
 This project is a fork of https://github.com/quri/react-bootstrap-datetimepicker
 
