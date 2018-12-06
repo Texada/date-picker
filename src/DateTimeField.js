@@ -38,10 +38,14 @@ class DateTimeField extends Component {
       left: -9999,
       zIndex: this.props.zIndex + 1
     },
-    viewDate: moment(this.props.dateTime, this.props.format, true).startOf(
-      "month"
-    ),
-    selectedDate: moment(this.props.dateTime, this.props.format, true),
+    viewDate: (this.props.dateTime === ""
+      ? moment(undefined, undefined, true)
+      : moment(this.props.dateTime, this.props.format, true)
+    ).startOf("month"),
+    selectedDate:
+      this.props.dateTime === ""
+        ? moment(undefined, undefined, true)
+        : moment(this.props.dateTime, this.props.format, true),
     inputValue:
       typeof this.props.defaultText !== "undefined"
         ? this.props.defaultText
