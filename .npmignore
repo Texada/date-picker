@@ -13,3 +13,9 @@ webpack.config.js
 TODO.md
 karma.dev.js
 src
+__tests__
+build
+minifycss.js
+publish.sh
+jestEnvironment.js
+rollup.config.js

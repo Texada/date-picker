@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createPortal } from "react-dom";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import moment from "moment";
 import classnames from "classnames";
 import DateTimePicker from "./DateTimePicker.js";

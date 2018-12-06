@@ -9,3 +9,6 @@ docs/*.html
 docs/assets/bundle.js
 lib/__tests__
 /bower_components/
+__tests__
+es
+umd
