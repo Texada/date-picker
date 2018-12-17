@@ -142,11 +142,14 @@ class DateTimeField extends Component {
         },
         function() {
           this.closePicker();
+
+          const changedDate = this.state.selectedDate;
           this.props.onChange(
-            this.state.selectedDate.format(this.props.format)
+            changedDate.format(this.props.format),
+            changedDate.format(this.state.inputFormat)
           );
           this.setState({
-            inputValue: this.state.selectedDate.format(this.state.inputFormat)
+            inputValue: changedDate.format(this.state.inputFormat)
           });
         }
       );
@@ -163,9 +166,14 @@ class DateTimeField extends Component {
       },
       function() {
         this.closePicker();
-        this.props.onChange(this.state.selectedDate.format(this.props.format));
+
+        const changedDate = this.state.selectedDate;
+        this.props.onChange(
+          changedDate.format(this.props.format),
+          changedDate.format(this.state.inputFormat)
+        );
         this.setState({
-          inputValue: this.state.selectedDate.format(this.state.inputFormat)
+          inputValue: changedDate.format(this.state.inputFormat)
         });
       }
     );
@@ -181,9 +189,14 @@ class DateTimeField extends Component {
       },
       function() {
         this.closePicker();
-        this.props.onChange(this.state.selectedDate.format(this.props.format));
+
+        const changedDate = this.state.selectedDate;
+        this.props.onChange(
+          changedDate.format(this.props.format),
+          changedDate.format(this.state.inputFormat)
+        );
         this.setState({
-          inputValue: this.state.selectedDate.format(this.state.inputFormat)
+          inputValue: changedDate.format(this.state.inputFormat)
         });
       }
     );
@@ -207,11 +220,13 @@ class DateTimeField extends Component {
         selectedDate: this.state.selectedDate.clone().add(1, "minutes")
       },
       function() {
-        this.props.onChange(this.state.selectedDate.format(this.props.format));
+        const changedDate = this.state.selectedDate;
+        this.props.onChange(
+          changedDate.format(this.props.format),
+          changedDate.format(this.state.inputFormat)
+        );
         this.setState({
-          inputValue: this.state.selectedDate.format(
-            this.resolvePropsInputFormat()
-          )
+          inputValue: changedDate.format(this.resolvePropsInputFormat())
         });
       }
     );
@@ -223,11 +238,13 @@ class DateTimeField extends Component {
         selectedDate: this.state.selectedDate.clone().add(1, "hours")
       },
       function() {
-        this.props.onChange(this.state.selectedDate.format(this.props.format));
+        const changedDate = this.state.selectedDate;
+        this.props.onChange(
+          changedDate.format(this.props.format),
+          changedDate.format(this.state.inputFormat)
+        );
         this.setState({
-          inputValue: this.state.selectedDate.format(
-            this.resolvePropsInputFormat()
-          )
+          inputValue: changedDate.format(this.resolvePropsInputFormat())
         });
       }
     );
@@ -257,11 +274,13 @@ class DateTimeField extends Component {
         selectedDate: this.state.selectedDate.clone().subtract(1, "minutes")
       },
       () => {
-        this.props.onChange(this.state.selectedDate.format(this.props.format));
+        const changedDate = this.state.selectedDate;
+        this.props.onChange(
+          changedDate.format(this.props.format),
+          changedDate.format(this.state.inputFormat)
+        );
         this.setState({
-          inputValue: this.state.selectedDate.format(
-            this.resolvePropsInputFormat()
-          )
+          inputValue: changedDate.format(this.resolvePropsInputFormat())
         });
       }
     );
@@ -273,11 +292,13 @@ class DateTimeField extends Component {
         selectedDate: this.state.selectedDate.clone().subtract(1, "hours")
       },
       () => {
-        this.props.onChange(this.state.selectedDate.format(this.props.format));
+        const changedDate = this.state.selectedDate;
+        this.props.onChange(
+          changedDate.format(this.props.format),
+          changedDate.format(this.state.inputFormat)
+        );
         this.setState({
-          inputValue: this.state.selectedDate.format(
-            this.resolvePropsInputFormat()
-          )
+          inputValue: changedDate.format(this.resolvePropsInputFormat())
         });
       }
     );
