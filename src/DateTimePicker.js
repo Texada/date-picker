@@ -11,6 +11,7 @@ const renderDatePicker = props => {
     return (
       <li>
         <DateTimePickerDate
+          showPicker={props.showPicker}
           addDecade={props.addDecade}
           addMonth={props.addMonth}
           addYear={props.addYear}
@@ -121,7 +122,8 @@ DateTimePicker.propTypes = {
   widgetStyle: PropTypes.object,
   togglePicker: PropTypes.func,
   setSelectedHour: PropTypes.func,
-  setSelectedMinute: PropTypes.func
+  setSelectedMinute: PropTypes.func,
+  showPicker: PropTypes.bool.isRequired
 };
 
 export default DateTimePicker;

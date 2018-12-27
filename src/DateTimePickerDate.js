@@ -28,6 +28,13 @@ class DateTimePickerDate extends Component {
     viewModes[Object.keys(viewModes)[this.props.viewMode]] ||
     viewModes.days;
 
+  static getDerivedStateFromProps(props, state) {
+    if (!props.showPicker && !state.daysDisplayed) {
+      return viewModes.days;
+    }
+    return {};
+  }
+
   showMonths = () => {
     this.setState({
       daysDisplayed: false,
@@ -141,7 +148,8 @@ DateTimePickerDate.propTypes = {
   addDecade: PropTypes.func.isRequired,
   subtractDecade: PropTypes.func.isRequired,
   minDate: PropTypes.object,
-  maxDate: PropTypes.object
+  maxDate: PropTypes.object,
+  showPicker: PropTypes.bool.isRequired
 };
 
 export default DateTimePickerDate;
