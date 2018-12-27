@@ -464,7 +464,6 @@ class DateTimeField extends Component {
           maxDate={this.props.maxDate}
           minDate={this.props.minDate}
           mode={this.props.mode}
-          ref={widgetRef => (this.widgetRef = widgetRef)}
           selectedDate={this.state.selectedDate}
           setSelectedDate={this.setSelectedDate}
           setSelectedHour={this.setSelectedHour}

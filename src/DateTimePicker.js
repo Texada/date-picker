@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import classnames from "classnames";
@@ -6,94 +6,87 @@ import DateTimePickerDate from "./DateTimePickerDate.js";
 import DateTimePickerTime from "./DateTimePickerTime.js";
 import Constants from "./Constants.js";
 
-class DateTimePicker extends Component {
-  renderDatePicker = () => {
-    if (this.props.showDatePicker) {
-      return (
-        <li>
-          <DateTimePickerDate
-            addDecade={this.props.addDecade}
-            addMonth={this.props.addMonth}
-            addYear={this.props.addYear}
-            daysOfWeekDisabled={this.props.daysOfWeekDisabled}
-            maxDate={this.props.maxDate}
-            minDate={this.props.minDate}
-            selectedDate={this.props.selectedDate}
-            setSelectedDate={this.props.setSelectedDate}
-            setViewMonth={this.props.setViewMonth}
-            setViewYear={this.props.setViewYear}
-            showToday={this.props.showToday}
-            subtractDecade={this.props.subtractDecade}
-            subtractMonth={this.props.subtractMonth}
-            subtractYear={this.props.subtractYear}
-            viewDate={this.props.viewDate}
-            viewMode={this.props.viewMode}
-          />
-        </li>
-      );
-    }
-  };
-
-  renderTimePicker = () => {
-    if (this.props.showTimePicker) {
-      return (
-        <li>
-          <DateTimePickerTime
-            addHour={this.props.addHour}
-            addMinute={this.props.addMinute}
-            mode={this.props.mode}
-            selectedDate={this.props.selectedDate}
-            setSelectedHour={this.props.setSelectedHour}
-            setSelectedMinute={this.props.setSelectedMinute}
-            subtractHour={this.props.subtractHour}
-            subtractMinute={this.props.subtractMinute}
-            togglePeriod={this.props.togglePeriod}
-            viewDate={this.props.viewDate}
-          />
-        </li>
-      );
-    }
-  };
-
-  renderSwitchButton = () => {
-    return this.props.mode === Constants.MODE_DATETIME ? (
+const renderDatePicker = props => {
+  if (props.showDatePicker) {
+    return (
       <li>
-        <span
-          className="btn picker-switch"
-          onClick={this.props.togglePicker}
-          style={{ width: "100%" }}
-        >
-          <span
-            className={classnames(
-              "glyphicon",
-              this.props.showTimePicker
-                ? "glyphicon-calendar"
-                : "glyphicon-time"
-            )}
-          />
-        </span>
+        <DateTimePickerDate
+          addDecade={props.addDecade}
+          addMonth={props.addMonth}
+          addYear={props.addYear}
+          daysOfWeekDisabled={props.daysOfWeekDisabled}
+          maxDate={props.maxDate}
+          minDate={props.minDate}
+          selectedDate={props.selectedDate}
+          setSelectedDate={props.setSelectedDate}
+          setViewMonth={props.setViewMonth}
+          setViewYear={props.setViewYear}
+          showToday={props.showToday}
+          subtractDecade={props.subtractDecade}
+          subtractMonth={props.subtractMonth}
+          subtractYear={props.subtractYear}
+          viewDate={props.viewDate}
+          viewMode={props.viewMode}
+        />
       </li>
-    ) : null;
-  };
-
-  render() {
-    return createPortal(
-      <div
-        className={classnames(this.props.widgetClasses)}
-        style={this.props.widgetStyle}
-      >
-        <ul className="list-unstyled">
-          {this.renderDatePicker()}
-
-          {this.renderSwitchButton()}
-
-          {this.renderTimePicker()}
-        </ul>
-      </div>,
-      document.querySelector("body")
     );
   }
-}
+};
+
+const renderTimePicker = props => {
+  if (props.showTimePicker) {
+    return (
+      <li>
+        <DateTimePickerTime
+          addHour={props.addHour}
+          addMinute={props.addMinute}
+          mode={props.mode}
+          selectedDate={props.selectedDate}
+          setSelectedHour={props.setSelectedHour}
+          setSelectedMinute={props.setSelectedMinute}
+          subtractHour={props.subtractHour}
+          subtractMinute={props.subtractMinute}
+          togglePeriod={props.togglePeriod}
+          viewDate={props.viewDate}
+        />
+      </li>
+    );
+  }
+};
+
+const renderSwitchButton = props => {
+  return props.mode === Constants.MODE_DATETIME ? (
+    <li>
+      <span
+        className="btn picker-switch"
+        onClick={props.togglePicker}
+        style={{ width: "100%" }}
+      >
+        <span
+          className={classnames(
+            "glyphicon",
+            props.showTimePicker ? "glyphicon-calendar" : "glyphicon-time"
+          )}
+        />
+      </span>
+    </li>
+  ) : null;
+};
+
+const DateTimePicker = props => {
+  return createPortal(
+    <div className={classnames(props.widgetClasses)} style={props.widgetStyle}>
+      <ul className="list-unstyled">
+        {renderDatePicker(props)}
+
+        {renderSwitchButton(props)}
+
+        {renderTimePicker(props)}
+      </ul>
+    </div>,
+    document.querySelector("body")
+  );
+};
 
 DateTimePicker.propTypes = {
   showDatePicker: PropTypes.bool,

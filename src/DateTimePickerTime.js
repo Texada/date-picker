@@ -46,84 +46,79 @@ class DateTimePickerTime extends Component {
   };
 
   renderPicker = () => {
-    if (!this.state.minutesDisplayed && !this.state.hoursDisplayed) {
-      return (
-        <div className="timepicker-picker">
-          <table className="table-condensed">
-            <tbody>
-              <tr>
-                <td>
-                  <a className="btn" onClick={this.props.addHour}>
-                    <span className="glyphicon glyphicon-chevron-up" />
-                  </a>
-                </td>
+    return !this.state.minutesDisplayed && !this.state.hoursDisplayed ? (
+      <div className="timepicker-picker">
+        <table className="table-condensed">
+          <tbody>
+            <tr>
+              <td>
+                <a className="btn" onClick={this.props.addHour}>
+                  <span className="glyphicon glyphicon-chevron-up" />
+                </a>
+              </td>
 
-                <td className="separator" />
+              <td className="separator" />
 
-                <td>
-                  <a className="btn" onClick={this.props.addMinute}>
-                    <span className="glyphicon glyphicon-chevron-up" />
-                  </a>
-                </td>
+              <td>
+                <a className="btn" onClick={this.props.addMinute}>
+                  <span className="glyphicon glyphicon-chevron-up" />
+                </a>
+              </td>
 
-                <td className="separator" />
-              </tr>
+              <td className="separator" />
+            </tr>
 
-              <tr>
-                <td>
-                  <span className="timepicker-hour" onClick={this.showHours}>
-                    {this.props.selectedDate.format("h")}
-                  </span>
-                </td>
+            <tr>
+              <td>
+                <span className="timepicker-hour" onClick={this.showHours}>
+                  {this.props.selectedDate.format("h")}
+                </span>
+              </td>
 
-                <td className="separator">:</td>
+              <td className="separator">:</td>
 
-                <td>
-                  <span
-                    className="timepicker-minute"
-                    onClick={this.showMinutes}
-                  >
-                    {this.props.selectedDate.format("mm")}
-                  </span>
-                </td>
+              <td>
+                <span className="timepicker-minute" onClick={this.showMinutes}>
+                  {this.props.selectedDate.format("mm")}
+                </span>
+              </td>
 
-                <td className="separator" />
+              <td className="separator" />
 
-                <td>
-                  <button
-                    className="btn btn-primary"
-                    onClick={this.props.togglePeriod}
-                    type="button"
-                  >
-                    {this.props.selectedDate.format("A")}
-                  </button>
-                </td>
-              </tr>
+              <td>
+                <button
+                  className="btn btn-primary"
+                  onClick={this.props.togglePeriod}
+                  type="button"
+                >
+                  {this.props.selectedDate.format("A")}
+                </button>
+              </td>
+            </tr>
 
-              <tr>
-                <td>
-                  <a className="btn" onClick={this.props.subtractHour}>
-                    <span className="glyphicon glyphicon-chevron-down" />
-                  </a>
-                </td>
+            <tr>
+              <td>
+                <a className="btn" onClick={this.props.subtractHour}>
+                  <span className="glyphicon glyphicon-chevron-down" />
+                </a>
+              </td>
 
-                <td className="separator" />
+              <td className="separator" />
 
-                <td>
-                  <a className="btn" onClick={this.props.subtractMinute}>
-                    <span className="glyphicon glyphicon-chevron-down" />
-                  </a>
-                </td>
+              <td>
+                <a className="btn" onClick={this.props.subtractMinute}>
+                  <span className="glyphicon glyphicon-chevron-down" />
+                </a>
+              </td>
 
-                <td className="separator" />
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      );
-    } else {
-      return "";
-    }
+              <td className="separator" />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      ""
+    );
   };
 
   render() {

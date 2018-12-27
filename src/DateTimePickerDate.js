@@ -4,31 +4,29 @@ import DateTimePickerDays from "./DateTimePickerDays";
 import DateTimePickerMonths from "./DateTimePickerMonths";
 import DateTimePickerYears from "./DateTimePickerYears";
 
-class DateTimePickerDate extends Component {
-  constructor(props) {
-    super(props);
-    const viewModes = {
-      days: {
-        daysDisplayed: true,
-        monthsDisplayed: false,
-        yearsDisplayed: false
-      },
-      months: {
-        daysDisplayed: false,
-        monthsDisplayed: true,
-        yearsDisplayed: false
-      },
-      years: {
-        daysDisplayed: false,
-        monthsDisplayed: false,
-        yearsDisplayed: true
-      }
-    };
-    this.state =
-      viewModes[this.props.viewMode] ||
-      viewModes[Object.keys(viewModes)[this.props.viewMode]] ||
-      viewModes.days;
+const viewModes = {
+  days: {
+    daysDisplayed: true,
+    monthsDisplayed: false,
+    yearsDisplayed: false
+  },
+  months: {
+    daysDisplayed: false,
+    monthsDisplayed: true,
+    yearsDisplayed: false
+  },
+  years: {
+    daysDisplayed: false,
+    monthsDisplayed: false,
+    yearsDisplayed: true
   }
+};
+
+class DateTimePickerDate extends Component {
+  state =
+    viewModes[this.props.viewMode] ||
+    viewModes[Object.keys(viewModes)[this.props.viewMode]] ||
+    viewModes.days;
 
   showMonths = () => {
     this.setState({
