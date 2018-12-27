@@ -32,6 +32,7 @@ class DateTimeField extends Component {
   };
 
   state = {
+    showPicker: false,
     showDatePicker: this.props.mode !== Constants.MODE_TIME,
     showTimePicker: this.props.mode === Constants.MODE_TIME,
     inputFormat: this.resolvePropsInputFormat(),

@@ -1,6 +1,6 @@
 {
   "name": "@texada/date-picker",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A bootstrap datetime picker component for React.js",
   "repository": {
     "type": "git",
