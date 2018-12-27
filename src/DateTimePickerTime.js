@@ -90,6 +90,9 @@ class DateTimePickerTime extends Component {
                   className="btn btn-primary"
                   onClick={this.props.togglePeriod}
                   type="button"
+                  style={{
+                    marginLeft: -10
+                  }}
                 >
                   {this.props.selectedDate.format("A")}
                 </button>

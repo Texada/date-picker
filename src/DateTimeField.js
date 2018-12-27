@@ -9,6 +9,13 @@ import Constants from "./Constants.js";
 const WIDGET_WIDTH = 266;
 const WIDGET_HEIGHT = 292;
 
+const getViewDate = props => {
+  return (props.dateTime === ""
+    ? moment(undefined, undefined, true)
+    : moment(props.dateTime, props.format, true)
+  ).startOf("month");
+};
+
 class DateTimeField extends Component {
   resolvePropsInputFormat = () => {
     if (this.props.inputFormat) {
@@ -38,10 +45,7 @@ class DateTimeField extends Component {
       left: -9999,
       zIndex: this.props.zIndex + 1
     },
-    viewDate: (this.props.dateTime === ""
-      ? moment(undefined, undefined, true)
-      : moment(this.props.dateTime, this.props.format, true)
-    ).startOf("month"),
+    viewDate: getViewDate(this.props),
     selectedDate:
       this.props.dateTime === ""
         ? moment(undefined, undefined, true)
@@ -411,7 +415,10 @@ class DateTimeField extends Component {
     style.display = "none";
     this.setState({
       showPicker: false,
-      widgetStyle: style
+      showTimePicker: false,
+      showDatePicker: true,
+      widgetStyle: style,
+      viewDate: getViewDate(this.props)
     });
   };
 
@@ -455,6 +462,7 @@ class DateTimeField extends Component {
       <>
         {this.renderOverlay()}
         <DateTimePicker
+          showPicker={this.state.showPicker}
           addDecade={this.addDecade}
           addHour={this.addHour}
           addMinute={this.addMinute}
