@@ -36,7 +36,8 @@
   right: 15px !important;
 }
 
-.bootstrap-datetimepicker-widget.pull-right::after, .bootstrap-datetimepicker-widget.pull-right::before {
+.bootstrap-datetimepicker-widget.pull-right::after,
+.bootstrap-datetimepicker-widget.pull-right::before {
   display: none;
 }
 
@@ -57,4 +58,15 @@
 .input-group.date .input-group-addon.btn-open-calendar.disabled span {
   cursor: default;
   background-color: #eee;
+}
+
+.input-group.date.has-error input.form-control {
+  border-color: #e0b4b4;
+  background-color: #fff6f6;
+}
+
+.input-group.date.has-error .input-group-addon.btn-open-calendar {
+  border-color: #e0b4b4;
+  color: black;
+  background-color: #fff6f6;
 }

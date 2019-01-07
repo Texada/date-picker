@@ -45,3 +45,4 @@ See [Examples](https://github.com/Texada/react-bootstrap-datetimepicker/tree/por
 | **defaultText** | string | {dateTime} | Sets the initial value. Could be an empty string, or helper text. |
 | **zIndex** | number | 4000 | Defines the z-index of the modal overlay |
 | **disabled** | boolean | false | Disables the date picker |
+| **hasError** | boolean | false | Makes input box red |

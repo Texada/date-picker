@@ -138,7 +138,7 @@ class Basic extends Component {
               dateTime={moment("2017-01-01", "YYYY-MM-DD")}
             />
             <pre>
-{`<DateTimeField
+              {`<DateTimeField
   mode="date"
   dateTime={moment("2017-01-01", "YYYY-MM-DD")}
 />`}
@@ -153,11 +153,16 @@ class Basic extends Component {
               format={"YYYY-MM-DD"}
               inputFormat={"YYYY/MM/DD"}
               onChange={(date, inputValue) => {
-                console.log("controlled component", date, inputValue)
+                console.log("controlled component", date, inputValue);
                 this.setState({ date });
               }}
               defaultText=""
             />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <DateTimeField hasError />
           </div>
         </div>
         <ModalExample />

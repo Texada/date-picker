@@ -1,6 +1,6 @@
 {
   "name": "@texada/date-picker",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A bootstrap datetime picker component for React.js",
   "repository": {
     "type": "git",
@@ -63,7 +63,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
-    "babel-loader": "^8.0.4",
+    "babel-loader": "^8.0.5",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "child_process": "^1.0.2",
     "classnames": "^2.1.2",

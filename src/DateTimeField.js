@@ -495,7 +495,9 @@ class DateTimeField extends Component {
           widgetStyle={this.state.widgetStyle}
         />
         <div
-          className={"input-group date " + this.size()}
+          className={`input-group date ${this.size()} ${
+            this.props.hasError ? "has-error" : ""
+          }`}
           ref={datetimepickerRef =>
             (this.datetimepickerRef = datetimepickerRef)
           }
@@ -536,7 +538,8 @@ DateTimeField.defaultProps = {
   mode: Constants.MODE_DATETIME,
   zIndex: 4000,
   onChange: () => {},
-  disabled: false
+  disabled: false,
+  hasError: false
 };
 
 DateTimeField.propTypes = {
@@ -578,7 +581,9 @@ DateTimeField.propTypes = {
   /** Disables clicking on some days. Goes from 0 (Sunday) to 6 (Saturday). */
   daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number),
   /** Disables the date picker */
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  /** Makes input box red */
+  hasError: PropTypes.bool
 };
 
 export default DateTimeField;
