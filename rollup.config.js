@@ -33,7 +33,7 @@ const config = {
       format: "cjs"
     }
   ],
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", "classnames", "moment", "prop-types"],
   plugins: [
     babel({
       exclude: "node_modules/**"

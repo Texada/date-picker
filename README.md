@@ -14,7 +14,7 @@ npm install @texada/date-picker
 Then:
 ```javascript
 import DateTimeField from "@texada/date-picker";
-import "@texada/date-picker/styles.min.css";
+import "@texada/date-picker/dist/styles.min.css";
 
 ...
 
