@@ -1,0 +1,55 @@
+{
+  "name": "@texada/date-picker",
+  "version": "0.5.0",
+  "description": "A bootstrap datetime picker component for React.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Texada/react-bootstrap-datetimepicker.git"
+  },
+  "main": "dist/cjs/DateTimeField.js",
+  "module": "dist/esm/DateTimeField.js",
+  "types": "src/DateTimeField.d.ts",
+  "scripts": {
+    "build": "gulp build",
+    "gulp": "gulp"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "react",
+    "react-component",
+    "bootstrap",
+    "datetimepicker",
+    "datetime"
+  ],
+  "author": "Loïc CHOLLIER <loic@chollier.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "classnames": "^2.2.6",
+    "clean-css": "^4.2.1",
+    "cross-env": "^5.2.0",
+    "eonasdan-bootstrap-datetimepicker": "https://github.com/Eonasdan/bootstrap-datetimepicker/tarball/master",
+    "gulp": "^4.0.0",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "rollup": "^1.7.4",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.2",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-replace": "^2.1.1",
+    "rollup-plugin-terser": "^4.0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/Texada/react-bootstrap-datetimepicker/issues"
+  }
+}
