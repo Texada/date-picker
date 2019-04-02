@@ -11,6 +11,7 @@
   "types": "src/DateTimeField.d.ts",
   "scripts": {
     "build": "gulp build",
+    "examples": "gulp examples",
     "gulp": "gulp"
   },
   "files": [
@@ -54,6 +55,9 @@
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-replace": "^2.1.1",
     "rollup-plugin-terser": "^4.0.4"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.2"
   },
   "bugs": {
     "url": "https://github.com/Texada/react-bootstrap-datetimepicker/issues"

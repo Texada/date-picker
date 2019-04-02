@@ -9,6 +9,11 @@ const exec = (command, extraEnv) =>
     env: Object.assign({}, process.env, extraEnv)
   });
 
+gulp.task("start-examples", done => {
+  exec("cd examples && npm i && npm run start");
+  done();
+});
+
 gulp.task("build-css", done => {
   new CleanCSS({
     level: 2
@@ -18,6 +23,10 @@ gulp.task("build-css", done => {
       "src/css/styles.css"
     ],
     (err, output) => {
+      if (!fs.existsSync("./dist")) {
+        fs.mkdirSync("./dist");
+      }
+
       fs.writeFile("dist/styles.min.css", output.styles, err => {
         if (err) {
           done("Error minifying css: \n".concat(err.message));
@@ -35,3 +44,4 @@ gulp.task("build-js", done => {
 });
 
 gulp.task("build", gulp.parallel("build-css", "build-js"));
+gulp.task("examples", gulp.series("build-css", "start-examples"));
