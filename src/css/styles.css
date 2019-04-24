@@ -2,7 +2,8 @@
 .datepicker .datepicker-days,
 .timepicker,
 .datepicker .datepicker-months td {
-  font-family: "Merriweather Sans";
+  font-family: "Merriweather Sans", "Open Sans", "Arial", -apple-system,
+    BlinkMacSystemFont, sans-serif;
 }
 
 .datepicker .datepicker-days .day.active,
