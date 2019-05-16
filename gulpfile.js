@@ -51,8 +51,6 @@ gulp.task("publish", async done => {
     command += ` --tag ${tag}`;
   }
   exec(command);
-
-  publish();
   done();
 });
 
