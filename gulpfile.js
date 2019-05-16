@@ -43,5 +43,19 @@ gulp.task("build-js", done => {
   done();
 });
 
+gulp.task("publish", async done => {
+  const { tag } = require("yargs").argv;
+
+  let command = `npm publish`;
+  if (tag) {
+    command += ` --tag ${tag}`;
+  }
+  exec(command);
+
+  publish();
+  done();
+});
+
 gulp.task("build", gulp.parallel("build-css", "build-js"));
 gulp.task("examples", gulp.series("build-css", "start-examples"));
+gulp.task("build+publish", gulp.series("build", "publish"));

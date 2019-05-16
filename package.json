@@ -12,7 +12,8 @@
   "scripts": {
     "build": "gulp build",
     "examples": "gulp examples",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "publish-pkg": "gulp build+publish"
   },
   "files": [
     "dist",
@@ -54,7 +55,8 @@
     "rollup-plugin-commonjs": "^9.2.2",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-replace": "^2.1.1",
-    "rollup-plugin-terser": "^4.0.4"
+    "rollup-plugin-terser": "^4.0.4",
+    "yargs": "^13.2.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.2"
