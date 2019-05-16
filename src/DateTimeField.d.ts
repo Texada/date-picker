@@ -13,32 +13,36 @@ export interface DateTimeFieldProps {
   /** Defines the format moment.js should use to parse and output the date to onChange */
   format: string;
   /** Defines additional attributes for the input element of the component. */
-  inputProps: object;
+  inputProps?: object;
   /** Defines the way the date is represented in the HTML input. It must be a format understanable by moment.js */
-  inputFormat: string;
+  inputFormat?: string;
   /** Sets the initial value. Could be an empty string, or helper text. */
-  defaultText: string;
+  defaultText?: string;
   /** Allows to selectively display only the time picker ('time') or the date picker ('date') */
-  mode: "date" | "datetime" | "time";
+  mode?: "date" | "datetime" | "time";
   /** The earliest date allowed for entry in the calendar view. */
-  minDate: object;
+  minDate?: object;
   /** The latest date allowed for entry in the calendar view. */
-  maxDate: object;
-  direction: "up" | "bottom" | "auto" | undefined;
+  maxDate?: object;
+  direction?: "up" | "bottom" | "auto" | undefined;
   /** Highlights today's date */
-  showToday: boolean;
+  showToday?: boolean;
   /** The default view to display when the picker is shown. ('years', 'months', 'days') */
-  viewMode: "days" | "months" | "years" | "date";
+  viewMode?: "days" | "months" | "years" | "date";
   /** Defines the z-index of the modal overlay */
-  zIndex: number;
+  zIndex?: number;
   /** Changes the size of the date picker input field. Sizes: "sm", "md", "lg" */
-  size: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg";
   /** Disables clicking on some days. Goes from 0 (Sunday) to 6 (Saturday). */
-  daysOfWeekDisabled: number[];
+  daysOfWeekDisabled?: number[];
   /** Disables the date picker */
-  disabled: boolean;
+  disabled?: boolean;
   /** Makes input box red */
-  hasError: boolean;
+  hasError?: boolean;
+  /** Label for input */
+  label?: string;
+  /** Makes input box red and shows error message when input is invalid */
+  shouldValidate?: boolean;
 }
 
 declare const DateTimeField: React.ComponentClass<DateTimeFieldProps>;

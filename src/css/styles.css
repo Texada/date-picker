@@ -18,7 +18,7 @@
 
 .bootstrap-datetimepicker-widget .btn {
   border-radius: 4px !important;
-  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0px 4px rgba(72, 159, 211, 0.75);
 }
 
 /* date picker dropdown */
@@ -62,12 +62,10 @@
 }
 
 .input-group.date.has-error input.form-control {
-  border-color: #e0b4b4;
-  background-color: #fff6f6;
+  border-color: #d75453; /*R500*/
 }
 
 .input-group.date.has-error .input-group-addon.btn-open-calendar {
-  border-color: #e0b4b4;
+  border-color: #d75453; /*R500*/
   color: black;
-  background-color: #fff6f6;
 }

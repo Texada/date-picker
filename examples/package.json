@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --port=8080 --progress",
+    "start": "webpack-dev-server --mode=development --port=9000 --progress",
     "build": "cross-env NODE_ENV=production webpack --mode=production -p --progress"
   },
   "license": "MIT",

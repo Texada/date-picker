@@ -149,6 +149,7 @@ class Basic extends Component {
           <div className="col-xs-12">
             controlled component
             <DateTimeField
+              shouldValidate
               dateTime={this.state.date}
               format={"YYYY-MM-DD"}
               inputFormat={"YYYY/MM/DD"}

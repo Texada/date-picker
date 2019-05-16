@@ -56,7 +56,9 @@ class DateTimeField extends Component {
         ? this.props.defaultText
         : moment(this.props.dateTime, this.props.format, true).format(
             this.resolvePropsInputFormat()
-          )
+          ),
+    isInvalid: false,
+    touched: false
   };
 
   componentDidUpdate = prevProps => {
@@ -72,24 +74,33 @@ class DateTimeField extends Component {
       ).format(this.props.inputFormat);
     }
 
-    if (
-      this.props.dateTime !== prevProps.dateTime &&
-      moment(this.props.dateTime, this.props.format, true).isValid()
-    ) {
+    if (this.props.dateTime !== prevProps.dateTime) {
       didChange = true;
-      state.viewDate = moment(
-        this.props.dateTime,
-        this.props.format,
-        true
-      ).startOf("month");
-      state.selectedDate = moment(this.props.dateTime, this.props.format, true);
-      state.inputValue = moment(
-        this.props.dateTime,
-        this.props.format,
-        true
-      ).format(
-        this.props.inputFormat ? this.props.inputFormat : this.state.inputFormat
-      );
+
+      if (moment(this.props.dateTime, this.props.format, true).isValid()) {
+        state.isInvalid = false;
+        state.viewDate = moment(
+          this.props.dateTime,
+          this.props.format,
+          true
+        ).startOf("month");
+        state.selectedDate = moment(
+          this.props.dateTime,
+          this.props.format,
+          true
+        );
+        state.inputValue = moment(
+          this.props.dateTime,
+          this.props.format,
+          true
+        ).format(
+          this.props.inputFormat
+            ? this.props.inputFormat
+            : this.state.inputFormat
+        );
+      } else {
+        state.isInvalid = true;
+      }
     }
 
     if (didChange) {
@@ -102,7 +113,12 @@ class DateTimeField extends Component {
     if (moment(value, this.state.inputFormat, true).isValid()) {
       this.setState({
         selectedDate: moment(value, this.state.inputFormat, true),
-        viewDate: moment(value, this.state.inputFormat, true).startOf("month")
+        viewDate: moment(value, this.state.inputFormat, true).startOf("month"),
+        isInvalid: false
+      });
+    } else {
+      this.setState({
+        isInvalid: true
       });
     }
 
@@ -459,6 +475,9 @@ class DateTimeField extends Component {
   };
 
   render() {
+    const isInvalid =
+      this.props.shouldValidate && this.state.touched && this.state.isInvalid;
+
     return (
       <>
         {this.props.label && (
@@ -499,7 +518,7 @@ class DateTimeField extends Component {
         />
         <div
           className={`input-group date ${this.size()} ${
-            this.props.hasError ? "has-error" : ""
+            this.props.hasError || isInvalid ? "has-error" : ""
           }`}
           ref={datetimepickerRef =>
             (this.datetimepickerRef = datetimepickerRef)
@@ -512,6 +531,10 @@ class DateTimeField extends Component {
             value={this.state.inputValue}
             {...this.props.inputProps}
             disabled={this.props.disabled}
+            onBlur={e => {
+              if (!this.state.touched) this.setState({ touched: true });
+              if (this.props.inputProps) this.props.inputProps.onBlur(e);
+            }}
           />
           <span
             className={`input-group-addon btn-open-calendar ${
@@ -526,6 +549,17 @@ class DateTimeField extends Component {
             <span className={classnames("glyphicon", this.state.buttonIcon)} />
           </span>
         </div>
+        {isInvalid && (
+          <div
+            style={{
+              color: "#d75453",
+              fontSize: 13,
+              marginTop: 5
+            }}
+          >
+            Date is invalid
+          </div>
+        )}
       </>
     );
   }
@@ -542,7 +576,8 @@ DateTimeField.defaultProps = {
   zIndex: 4000,
   onChange: () => {},
   disabled: false,
-  hasError: false
+  hasError: false,
+  shouldValidate: false
 };
 
 DateTimeField.propTypes = {
@@ -588,7 +623,9 @@ DateTimeField.propTypes = {
   /** Makes input box red */
   hasError: PropTypes.bool,
   /** Label for input */
-  label: PropTypes.string
+  label: PropTypes.string,
+  /** Makes input box red and shows error message when input is invalid */
+  shouldValidate: PropTypes.bool
 };
 
 export default DateTimeField;
