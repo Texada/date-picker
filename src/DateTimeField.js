@@ -461,6 +461,9 @@ class DateTimeField extends Component {
   render() {
     return (
       <>
+        {this.props.label && (
+          <label className="control-label">{this.props.label}</label>
+        )}
         {this.renderOverlay()}
         <DateTimePicker
           showPicker={this.state.showPicker}
@@ -583,7 +586,9 @@ DateTimeField.propTypes = {
   /** Disables the date picker */
   disabled: PropTypes.bool,
   /** Makes input box red */
-  hasError: PropTypes.bool
+  hasError: PropTypes.bool,
+  /** Label for input */
+  label: PropTypes.string
 };
 
 export default DateTimeField;

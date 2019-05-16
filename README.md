@@ -46,3 +46,4 @@ See [Examples](https://github.com/Texada/react-bootstrap-datetimepicker/tree/por
 | **zIndex** | number | 4000 | Defines the z-index of the modal overlay |
 | **disabled** | boolean | false | Disables the date picker |
 | **hasError** | boolean | false | Makes input box red |
+| **label** | string | undefined | Label for input |
