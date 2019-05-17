@@ -478,6 +478,10 @@ class DateTimeField extends Component {
     const isInvalid =
       this.props.shouldValidate && this.state.touched && this.state.isInvalid;
 
+    const invalidDateMsg =
+      this.props.invalidDateMsg ||
+      `Date does not match format (${this.state.inputFormat})`;
+
     return (
       <>
         {this.props.label && (
@@ -557,7 +561,7 @@ class DateTimeField extends Component {
               marginTop: 5
             }}
           >
-            Date is invalid
+            {invalidDateMsg}
           </div>
         )}
       </>
@@ -577,7 +581,8 @@ DateTimeField.defaultProps = {
   onChange: () => {},
   disabled: false,
   hasError: false,
-  shouldValidate: false
+  shouldValidate: false,
+  invalidDateMsg: undefined
 };
 
 DateTimeField.propTypes = {
@@ -625,7 +630,9 @@ DateTimeField.propTypes = {
   /** Label for input */
   label: PropTypes.string,
   /** Makes input box red and shows error message when input is invalid */
-  shouldValidate: PropTypes.bool
+  shouldValidate: PropTypes.bool,
+  /** Error message to display when the date is invalid */
+  invalidDateMsg: PropTypes.string
 };
 
 export default DateTimeField;
