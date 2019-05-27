@@ -45,6 +45,8 @@ export interface DateTimeFieldProps {
   shouldValidate?: boolean;
   /** Error message to display when the date is invalid */
   invalidDateMsg?: string;
+  /** Displays a red "*"" on the label */
+  required?: boolean;
 }
 
 declare const DateTimeField: React.ComponentClass<DateTimeFieldProps>;

@@ -69,3 +69,8 @@
   border-color: #d75453; /*R500*/
   color: black;
 }
+
+.date-time-field-label.required::after {
+  content: "*";
+  color: #d75453; /*R500*/
+}

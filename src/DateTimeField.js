@@ -485,7 +485,13 @@ class DateTimeField extends Component {
     return (
       <>
         {this.props.label && (
-          <label className="control-label">{this.props.label}</label>
+          <label
+            className={`control-label date-time-field-label ${
+              this.props.required ? "required" : ""
+            }`}
+          >
+            {this.props.label}
+          </label>
         )}
         {this.renderOverlay()}
         <DateTimePicker
@@ -582,7 +588,8 @@ DateTimeField.defaultProps = {
   disabled: false,
   hasError: false,
   shouldValidate: false,
-  invalidDateMsg: undefined
+  invalidDateMsg: undefined,
+  required: false
 };
 
 DateTimeField.propTypes = {
@@ -632,7 +639,8 @@ DateTimeField.propTypes = {
   /** Makes input box red and shows error message when input is invalid */
   shouldValidate: PropTypes.bool,
   /** Error message to display when the date is invalid */
-  invalidDateMsg: PropTypes.string
+  invalidDateMsg: PropTypes.string,
+  required: PropTypes.bool
 };
 
 export default DateTimeField;

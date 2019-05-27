@@ -48,3 +48,4 @@ See [Examples](https://github.com/Texada/react-bootstrap-datetimepicker/tree/por
 | **hasError** | boolean | false | Makes input box red |
 | **label** | string | undefined | Label for input |
 | **shouldValidate** | boolean | false | Makes input box red and shows error message when input is invalid |
+| **required** | boolean | false | Displays a red "*"" on the label |
