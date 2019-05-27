@@ -167,7 +167,7 @@ class Basic extends Component {
         </div>
         <div className="row">
           <div className="col-xs-12">
-            <DateTimeField label="Label" hasError />
+            <DateTimeField label="Label" hasError mode="time" />
           </div>
         </div>
         <ModalExample />

@@ -5,6 +5,8 @@ import classnames from "classnames";
 import DateTimePickerDate from "./DateTimePickerDate.js";
 import DateTimePickerTime from "./DateTimePickerTime.js";
 import Constants from "./Constants.js";
+import CalendarIcon from "./icons/calendar.svg";
+import TimeIcon from "./icons/time.svg";
 
 const renderDatePicker = props => {
   if (props.showDatePicker) {
@@ -63,12 +65,11 @@ const renderSwitchButton = props => {
         onClick={props.togglePicker}
         style={{ width: "100%" }}
       >
-        <span
-          className={classnames(
-            "glyphicon",
-            props.showTimePicker ? "glyphicon-calendar" : "glyphicon-time"
-          )}
-        />
+        {props.showTimePicker ? (
+          <CalendarIcon height={18} />
+        ) : (
+          <TimeIcon height={18} />
+        )}
       </span>
     </li>
   ) : null;

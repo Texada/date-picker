@@ -14,11 +14,14 @@
 
 .btn.picker-switch {
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bootstrap-datetimepicker-widget .btn {
   border-radius: 4px !important;
-  box-shadow: 0px 0px 4px rgba(72, 159, 211, 0.75);
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.08);
 }
 
 /* date picker dropdown */

@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import moment from "moment";
-import classnames from "classnames";
 import DateTimePicker from "./DateTimePicker.js";
 import Constants from "./Constants.js";
+import CalendarIcon from "./icons/calendar.svg";
+import TimeIcon from "./icons/time.svg";
 
 const WIDGET_WIDTH = 266;
 const WIDGET_HEIGHT = 292;
@@ -36,10 +37,7 @@ class DateTimeField extends Component {
     showDatePicker: this.props.mode !== Constants.MODE_TIME,
     showTimePicker: this.props.mode === Constants.MODE_TIME,
     inputFormat: this.resolvePropsInputFormat(),
-    buttonIcon:
-      this.props.mode === Constants.MODE_TIME
-        ? "glyphicon-time"
-        : "glyphicon-calendar",
+    buttonIcon: this.props.mode === Constants.MODE_TIME ? "time" : "calendar",
     widgetStyle: {
       display: "block",
       position: "absolute",
@@ -556,7 +554,11 @@ class DateTimeField extends Component {
             }
             disabled={this.props.disabled}
           >
-            <span className={classnames("glyphicon", this.state.buttonIcon)} />
+            {this.state.buttonIcon === "calendar" ? (
+              <CalendarIcon height={18} />
+            ) : (
+              <TimeIcon height={18} />
+            )}
           </span>
         </div>
         {isInvalid && (

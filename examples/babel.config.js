@@ -8,7 +8,8 @@ module.exports = api => {
       "@babel/plugin-syntax-import-meta",
       "@babel/plugin-proposal-class-properties",
       "@babel/plugin-proposal-export-default-from",
-      "@babel/plugin-proposal-optional-chaining"
+      "@babel/plugin-proposal-optional-chaining",
+      "inline-react-svg"
     ]
   };
 };
