@@ -56,7 +56,8 @@ class DateTimeField extends Component {
             this.resolvePropsInputFormat()
           ),
     isInvalid: false,
-    touched: false
+    touched: false,
+    hasFocus: false
   };
 
   componentDidUpdate = prevProps => {
@@ -527,7 +528,7 @@ class DateTimeField extends Component {
         <div
           className={`input-group date ${this.size()} ${
             this.props.hasError || isInvalid ? "has-error" : ""
-          }`}
+          } ${this.state.hasFocus ? "focus" : ""}`}
           ref={datetimepickerRef =>
             (this.datetimepickerRef = datetimepickerRef)
           }
@@ -540,8 +541,15 @@ class DateTimeField extends Component {
             {...this.props.inputProps}
             disabled={this.props.disabled}
             onBlur={e => {
+              this.setState({ hasFocus: false });
               if (!this.state.touched) this.setState({ touched: true });
-              if (this.props.inputProps) this.props.inputProps.onBlur(e);
+              if (this.props.inputProps.onBlur) this.props.inputProps.onBlur(e);
+            }}
+            onFocus={e => {
+              this.setState({ hasFocus: true });
+              if (this.props.inputProps.onFocus) {
+                this.props.inputProps.onFocus(e);
+              }
             }}
           />
           <span
@@ -591,7 +599,8 @@ DateTimeField.defaultProps = {
   hasError: false,
   shouldValidate: false,
   invalidDateMsg: undefined,
-  required: false
+  required: false,
+  inputProps: {}
 };
 
 DateTimeField.propTypes = {
