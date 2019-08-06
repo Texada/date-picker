@@ -39,10 +39,7 @@ class DateTimeField extends Component {
     inputFormat: this.resolvePropsInputFormat(),
     buttonIcon: this.props.mode === Constants.MODE_TIME ? "time" : "calendar",
     widgetStyle: {
-      display: "block",
-      position: "absolute",
-      left: -9999,
-      zIndex: this.props.zIndex + 1
+      display: "none",
     },
     viewDate: getViewDate(this.props),
     selectedDate:
@@ -427,7 +424,6 @@ class DateTimeField extends Component {
 
   closePicker = () => {
     let style = { ...this.state.widgetStyle };
-    style.left = -9999;
     style.display = "none";
     this.setState({
       showPicker: false,
