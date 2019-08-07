@@ -40,6 +40,7 @@ class DateTimeField extends Component {
     buttonIcon: this.props.mode === Constants.MODE_TIME ? "time" : "calendar",
     widgetStyle: {
       display: "none",
+      zIndex: this.props.zIndex + 1
     },
     viewDate: getViewDate(this.props),
     selectedDate:
