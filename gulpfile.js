@@ -14,6 +14,11 @@ gulp.task("start-examples", done => {
   done();
 });
 
+gulp.task("build-examples-dir", done => {
+  exec("cd examples && npm i && npm run build");
+  done();
+});
+
 gulp.task("build-css", done => {
   new CleanCSS({
     level: 2
@@ -56,4 +61,5 @@ gulp.task("publish", async done => {
 
 gulp.task("build", gulp.parallel("build-css", "build-js"));
 gulp.task("examples", gulp.series("build-css", "start-examples"));
+gulp.task("build-examples", gulp.series("build-css", "build-examples-dir"));
 gulp.task("build+publish", gulp.series("build", "publish"));

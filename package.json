@@ -12,6 +12,7 @@
   "scripts": {
     "build": "gulp build",
     "examples": "gulp examples",
+    "build-examples": "gulp build-examples",
     "gulp": "gulp",
     "publish-pkg": "gulp build+publish"
   },
