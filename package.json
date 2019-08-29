@@ -27,6 +27,7 @@
     "datetimepicker",
     "datetime"
   ],
+  "homepage": "https://quirky-almeida-9a2543.netlify.com/",
   "author": "Loïc CHOLLIER <loic@chollier.com>",
   "license": "MIT",
   "peerDependencies": {
