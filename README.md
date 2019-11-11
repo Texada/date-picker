@@ -1,4 +1,7 @@
-# @texada/date-picker ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square) ![npm (scoped)](https://img.shields.io/npm/v/@texada/date-picker.svg?style=flat-square) ![](https://img.shields.io/badge/react-%3E%3D%2016.1.0-brightgreen.svg?style=flat-square) ![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@texada/date-picker.svg?style=flat-square)
+# @texada/date-picker
+
+ ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square) ![npm (scoped)](https://img.shields.io/npm/v/@texada/date-picker.svg?style=flat-square) ![](https://img.shields.io/badge/react-%3E%3D%2016.1.0-brightgreen.svg?style=flat-square) ![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@texada/date-picker.svg?style=flat-square)
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fd8eaa2d-ed90-4761-87b9-0e57c60f4e5e/deploy-status)](https://app.netlify.com/sites/quirky-almeida-9a2543/deploys)
 
 This project is a fork of https://github.com/quri/react-bootstrap-datetimepicker
@@ -8,12 +11,14 @@ This project is a port of https://github.com/Eonasdan/bootstrap-datetimepicker f
 ## Usage
 
 Installation:
-```
+
+```bash
 npm install @texada/date-picker
 ```
 
 Then:
-```javascript
+
+```js
 import DateTimeField from "@texada/date-picker";
 import "@texada/date-picker/dist/styles.min.css";
 
@@ -23,6 +28,7 @@ render() {
   return <DateTimeField />;
 }
 ```
+
 See [Examples](https://github.com/Texada/react-bootstrap-datetimepicker/tree/portal/examples) for more details.
 
 ## API
@@ -50,3 +56,4 @@ See [Examples](https://github.com/Texada/react-bootstrap-datetimepicker/tree/por
 | **label** | string | undefined | Label for input |
 | **shouldValidate** | boolean | false | Makes input box red and shows error message when input is invalid |
 | **required** | boolean | false | Displays a red "*"" on the label |
+| **hasError** | boolean | false | Makes input box red |

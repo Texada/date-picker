@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as moment from "moment";
 
 export interface DateTimeFieldProps {
   [key: string]: any;
@@ -13,7 +14,10 @@ export interface DateTimeFieldProps {
   /** Defines the format moment.js should use to parse and output the date to onChange */
   format: string;
   /** Defines additional attributes for the input element of the component. */
-  inputProps?: object;
+  inputProps?: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >;
   /** Defines the way the date is represented in the HTML input. It must be a format understanable by moment.js */
   inputFormat?: string;
   /** Sets the initial value. Could be an empty string, or helper text. */
@@ -21,9 +25,9 @@ export interface DateTimeFieldProps {
   /** Allows to selectively display only the time picker ('time') or the date picker ('date') */
   mode?: "date" | "datetime" | "time";
   /** The earliest date allowed for entry in the calendar view. */
-  minDate?: object;
+  minDate?: moment.Moment;
   /** The latest date allowed for entry in the calendar view. */
-  maxDate?: object;
+  maxDate?: moment.Moment;
   direction?: "up" | "bottom" | "auto" | undefined;
   /** Highlights today's date */
   showToday?: boolean;

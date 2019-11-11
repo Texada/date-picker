@@ -602,7 +602,18 @@ DateTimeField.defaultProps = {
 
 DateTimeField.propTypes = {
   /** Represents the inital dateTime, this string is then parsed by moment.js */
-  dateTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  dateTime: (props, _propName, componentName) => {
+    const { dateTime } = props;
+    if (
+      typeof dateTime !== "string" &&
+      typeof dateTime !== "number" &&
+      !moment.isMoment(dateTime)
+    ) {
+      throw new Error(
+        `Invalid prop 'dateTime' supplied to ${componentName}. 'dateTime' must be a string, number or a moment object.`
+      );
+    }
+  },
   /** Callback trigger when the date changes. x is the new datetime value. */
   onChange: PropTypes.func,
   /** Defines the format moment.js should use to parse and output the date to onChange */
