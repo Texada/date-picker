@@ -6,6 +6,7 @@ import DateTimePicker from "./DateTimePicker.js";
 import Constants from "./Constants.js";
 import CalendarIcon from "./icons/calendar.svg";
 import TimeIcon from "./icons/time.svg";
+import generateId from "./generateId.js";
 
 const WIDGET_WIDTH = 266;
 const WIDGET_HEIGHT = 292;
@@ -18,6 +19,12 @@ const getViewDate = props => {
 };
 
 class DateTimeField extends Component {
+  autoId = generateId();
+
+  get id() {
+    return this.props.id || `date-time-field-${this.autoId}`;
+  }
+
   resolvePropsInputFormat = () => {
     if (this.props.inputFormat) {
       return this.props.inputFormat;
@@ -482,6 +489,7 @@ class DateTimeField extends Component {
       <>
         {this.props.label && (
           <label
+            htmlFor={this.id}
             className={`control-label date-time-field-label ${
               this.props.required ? "required" : ""
             }`}
@@ -531,6 +539,7 @@ class DateTimeField extends Component {
           }
         >
           <input
+            id={this.id}
             className="form-control"
             onChange={this.onChange}
             type="text"
@@ -597,7 +606,8 @@ DateTimeField.defaultProps = {
   shouldValidate: false,
   invalidDateMsg: undefined,
   required: false,
-  inputProps: {}
+  inputProps: {},
+  id: undefined
 };
 
 DateTimeField.propTypes = {
@@ -659,7 +669,8 @@ DateTimeField.propTypes = {
   shouldValidate: PropTypes.bool,
   /** Error message to display when the date is invalid */
   invalidDateMsg: PropTypes.string,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  id: PropTypes.string
 };
 
 export default DateTimeField;
