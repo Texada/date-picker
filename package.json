@@ -14,7 +14,8 @@
     "examples": "gulp examples",
     "build-examples": "gulp build-examples",
     "gulp": "gulp",
-    "publish-pkg": "gulp build+publish"
+    "publish-pkg": "gulp build+publish",
+    "test": "jest"
   },
   "files": [
     "dist",
@@ -43,12 +44,15 @@
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^9.4.0",
+    "@types/jest": "^24.9.0",
     "babel-plugin-inline-react-svg": "^1.1.0",
     "classnames": "^2.2.6",
     "clean-css": "^4.2.1",
     "cross-env": "^5.2.0",
     "eonasdan-bootstrap-datetimepicker": "https://github.com/Eonasdan/bootstrap-datetimepicker/tarball/master",
     "gulp": "^4.0.0",
+    "jest": "^25.1.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
