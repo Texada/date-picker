@@ -12,10 +12,10 @@ const WIDGET_WIDTH = 266;
 const WIDGET_HEIGHT = 292;
 
 const getViewDate = props => {
-  return (props.dateTime === ""
-    ? moment(undefined, undefined, true)
-    : moment(props.dateTime, props.format, true)
-  ).startOf("month");
+  let date = moment(props.dateTime, props.format, true);
+  if (!date.isValid()) date = moment(undefined, undefined, true);
+
+  return date.startOf("month");
 };
 
 class DateTimeField extends Component {
