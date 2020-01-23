@@ -10,12 +10,12 @@ const exec = (command, extraEnv) =>
   });
 
 gulp.task("start-examples", done => {
-  exec("cd examples && npm i && npm run start");
+  exec("cd examples && npm ci && npm run start");
   done();
 });
 
 gulp.task("build-examples-dir", done => {
-  exec("cd examples && npm i && npm run build");
+  exec("cd examples && npm ci && npm run build");
   done();
 });
 
