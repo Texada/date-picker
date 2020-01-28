@@ -4,7 +4,7 @@ import * as moment from "moment";
 export interface DateTimeFieldProps {
   [key: string]: any;
   /** Represents the inital dateTime, this string is then parsed by moment.js */
-  dateTime: string | number;
+  dateTime: string | number | moment.Moment;
   /** Callback trigger when the date changes. x is the new datetime value. */
   onChange: (
     /** date formatted with format prop */
