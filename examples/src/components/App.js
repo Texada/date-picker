@@ -153,16 +153,16 @@ class Basic extends Component {
           <div className="col-xs-12">
             controlled component
             <DateTimeField
-              shouldValidate
-              dateTime={this.state.date}
-              format={"YYYY-MM-DD"}
-              inputFormat={"YYYY/MM/DD"}
-              onChange={(date, inputValue) => {
-                console.log("controlled component", date, inputValue);
-                this.setState({ date });
-              }}
-              defaultText=""
+              mode="date"
+              format="YYYY-MM-DD"
+              dateTime="2017-01-01"
             />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            Invalid date
+            <DateTimeField dateTime="abcd" format="YYYY-MM-DD" />
           </div>
         </div>
         <div className="row">

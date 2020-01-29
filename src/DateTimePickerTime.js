@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import DateTimePickerMinutes from "./DateTimePickerMinutes";
 import DateTimePickerHours from "./DateTimePickerHours";
 import Constants from "./Constants.js";
+import moment from "moment";
 
 class DateTimePickerTime extends Component {
   state = {
@@ -45,6 +46,13 @@ class DateTimePickerTime extends Component {
     }
   };
 
+  get date() {
+    let date = this.props.selectedDate;
+    if (!moment.isMoment(date) || !date.isValid()) date = this.props.viewDate;
+
+    return date;
+  }
+
   renderPicker = () => {
     return !this.state.minutesDisplayed && !this.state.hoursDisplayed ? (
       <div className="timepicker-picker">
@@ -71,7 +79,7 @@ class DateTimePickerTime extends Component {
             <tr>
               <td>
                 <span className="timepicker-hour" onClick={this.showHours}>
-                  {this.props.selectedDate.format("h")}
+                  {this.date.format("h")}
                 </span>
               </td>
 
@@ -79,7 +87,7 @@ class DateTimePickerTime extends Component {
 
               <td>
                 <span className="timepicker-minute" onClick={this.showMinutes}>
-                  {this.props.selectedDate.format("mm")}
+                  {this.date.format("mm")}
                 </span>
               </td>
 
@@ -94,7 +102,7 @@ class DateTimePickerTime extends Component {
                     marginLeft: -10
                   }}
                 >
-                  {this.props.selectedDate.format("A")}
+                  {this.date.format("A")}
                 </button>
               </td>
             </tr>
