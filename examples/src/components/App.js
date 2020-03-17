@@ -167,6 +167,12 @@ class Basic extends Component {
         </div>
         <div className="row">
           <div className="col-xs-12">
+            Input disabled
+            <DateTimeField mode="date" inputDisabled />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
             <DateTimeField label="Label" hasError mode="time" />
           </div>
         </div>
