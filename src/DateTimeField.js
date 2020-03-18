@@ -545,13 +545,21 @@ class DateTimeField extends Component {
             type="text"
             value={this.state.inputValue}
             {...this.props.inputProps}
-            disabled={this.props.disabled || this.props.inputDisabled}
+            disabled={this.props.disabled}
+            readOnly={this.props.disabled || this.props.calendarOnly}
             onBlur={e => {
+              if (this.props.calendarOnly) return;
+
               this.setState({ hasFocus: false });
               if (!this.state.touched) this.setState({ touched: true });
               if (this.props.inputProps.onBlur) this.props.inputProps.onBlur(e);
             }}
             onFocus={e => {
+              if (this.props.calendarOnly) {
+                this.onClick();
+                return;
+              }
+
               this.setState({ hasFocus: true });
               if (this.props.inputProps.onFocus) {
                 this.props.inputProps.onFocus(e);
@@ -602,7 +610,7 @@ DateTimeField.defaultProps = {
   zIndex: 4000,
   onChange: () => {},
   disabled: false,
-  inputDisabled: false,
+  calendarOnly: false,
   hasError: false,
   shouldValidate: false,
   invalidDateMsg: undefined,
@@ -662,7 +670,7 @@ DateTimeField.propTypes = {
   daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number),
   /** Disables the date picker */
   disabled: PropTypes.bool,
-  inputDisabled: PropTypes.bool,
+  calendarOnly: PropTypes.bool,
   /** Makes input box red */
   hasError: PropTypes.bool,
   /** Label for input */

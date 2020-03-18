@@ -41,8 +41,8 @@ export interface DateTimeFieldProps {
   daysOfWeekDisabled?: number[];
   /** Disables the date picker */
   disabled?: boolean;
-  /** Disables the input */
-  inputDisabled?: boolean;
+  /** Makes the input uneditable and clicking it opens the calendar instead */
+  calendarOnly?: boolean;
   /** Makes input box red */
   hasError?: boolean;
   /** Label for input */

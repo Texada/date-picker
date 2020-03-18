@@ -71,9 +71,12 @@
 }
 
 .input-group.date .form-control[disabled],
-.input-group.date .form-control[readonly],
 .input-group.date fieldset[disabled] .form-control {
   background-color: #f7f8f9; /*K100*/
+}
+
+.input-group.date .form-control[readonly] {
+  background-color: #fff;
 }
 
 .input-group.date.has-error input.form-control {
