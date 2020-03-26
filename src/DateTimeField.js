@@ -18,6 +18,13 @@ const getViewDate = props => {
   return date.startOf("month");
 };
 
+const Unit = {
+  Minute: "minute",
+  Hour: "hour",
+  Month: "month",
+  Year: "year"
+};
+
 class DateTimeField extends Component {
   autoId = generateId();
 
@@ -246,46 +253,18 @@ class DateTimeField extends Component {
     });
   };
 
-  addMinute = () => {
-    this.setState(
-      {
-        selectedDate: this.state.selectedDate.clone().add(1, "minutes")
-      },
-      function() {
-        const changedDate = this.state.selectedDate;
-        this.props.onChange(
-          changedDate.format(this.props.format),
-          changedDate.format(this.state.inputFormat)
-        );
-        this.setState({
-          inputValue: changedDate.format(this.resolvePropsInputFormat())
-        });
-      }
-    );
-  };
+  changeSelectedDate = (amount, unit) => {
+    const newUnit = this.state.selectedDate
+      .clone()
+      .add(amount, unit)
+      .get(unit);
 
-  addHour = () => {
-    this.setState(
-      {
-        selectedDate: this.state.selectedDate.clone().add(1, "hours")
-      },
-      function() {
-        const changedDate = this.state.selectedDate;
-        this.props.onChange(
-          changedDate.format(this.props.format),
-          changedDate.format(this.state.inputFormat)
-        );
-        this.setState({
-          inputValue: changedDate.format(this.resolvePropsInputFormat())
-        });
-      }
-    );
-  };
+    const newDate = this.state.selectedDate.clone()[unit](newUnit);
+    if (!this.isInRange(newDate)) return;
 
-  subtractMinute = () => {
     this.setState(
       {
-        selectedDate: this.state.selectedDate.clone().subtract(1, "minutes")
+        selectedDate: newDate
       },
       () => {
         const changedDate = this.state.selectedDate;
@@ -300,50 +279,33 @@ class DateTimeField extends Component {
     );
   };
 
-  subtractHour = () => {
-    this.setState(
-      {
-        selectedDate: this.state.selectedDate.clone().subtract(1, "hours")
-      },
-      () => {
-        const changedDate = this.state.selectedDate;
-        this.props.onChange(
-          changedDate.format(this.props.format),
-          changedDate.format(this.state.inputFormat)
-        );
-        this.setState({
-          inputValue: changedDate.format(this.resolvePropsInputFormat())
-        });
-      }
-    );
-  };
+  addMinute = () => this.changeSelectedDate(1, Unit.Minute);
+  subtractMinute = () => this.changeSelectedDate(-1, Unit.Minute);
+  addHour = () => this.changeSelectedDate(1, Unit.Hour);
+  subtractHour = () => this.changeSelectedDate(-1, Unit.Hour);
 
-  changeTime = (amount, unit) => {
+  changeViewDate = (amount, unit) => {
     const newDate = this.state.viewDate.clone();
     newDate.add(amount, unit);
+
     this.setState({
       viewDate: newDate
     });
   };
 
-  addMonth = () => this.changeTime(1, "months");
-
-  addYear = () => this.changeTime(1, "years");
-
-  addDecade = () => this.changeTime(10, "years");
-
-  subtractMonth = () => this.changeTime(-1, "months");
-
-  subtractYear = () => this.changeTime(-1, "years");
-
-  subtractDecade = () => this.changeTime(-10, "years");
+  addMonth = () => this.changeViewDate(1, Unit.Month);
+  subtractMonth = () => this.changeViewDate(-1, Unit.Month);
+  addYear = () => this.changeViewDate(1, Unit.Year);
+  subtractYear = () => this.changeViewDate(-1, Unit.Year);
+  addDecade = () => this.changeViewDate(10, Unit.Year);
+  subtractDecade = () => this.changeViewDate(-10, Unit.Year);
 
   togglePeriod = () => {
     const isPM = this.state.selectedDate.hour() > 12;
 
     const hour = this.state.selectedDate
       .clone()
-      .add(12 * (isPM ? -1 : 1), "hours")
+      [isPM ? "subtract" : "add"](12, "hours")
       .get("hour");
 
     const newDate = this.state.selectedDate.clone().hour(hour);
