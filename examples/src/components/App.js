@@ -116,7 +116,14 @@ class Basic extends Component {
               maxDate={moment().add(1, "days")}
               minDate={moment().subtract(1, "days")}
             />
-            <pre> {"<DateTimeField daysOfWeekDisabled={[0,1,2]} />"} </pre>
+            <pre>
+              {`
+<DateTimeField
+  maxDate={moment().add(1, "days")}
+  minDate={moment().subtract(1, "days")}
+/>
+            `.trim()}
+            </pre>
           </div>
         </div>
         <div className="row">
@@ -142,10 +149,12 @@ class Basic extends Component {
               dateTime="2017-01-01"
             />
             <pre>
-              {`<DateTimeField
+              {`
+<DateTimeField
   mode="date"
   dateTime={moment("2017-01-01", "YYYY-MM-DD")}
-/>`}
+/>
+`.trim()}
             </pre>
           </div>
         </div>
