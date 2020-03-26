@@ -112,6 +112,13 @@ class DateTimeField extends Component {
     }
   };
 
+  isInRange = date => {
+    const { maxDate, minDate } = this.props;
+    const isAfterMaxDate = () => Boolean(maxDate) && date.isAfter(maxDate);
+    const isBeforeMinDate = () => Boolean(minDate) && date.isBefore(minDate);
+    return !isAfterMaxDate() && !isBeforeMinDate();
+  };
+
   onChange = event => {
     const value = event.target == null ? event : event.target.value;
     if (moment(value, this.state.inputFormat, true).isValid()) {
@@ -275,24 +282,6 @@ class DateTimeField extends Component {
     );
   };
 
-  addMonth = () => {
-    this.setState({
-      viewDate: this.state.viewDate.add(1, "months")
-    });
-  };
-
-  addYear = () => {
-    this.setState({
-      viewDate: this.state.viewDate.add(1, "years")
-    });
-  };
-
-  addDecade = () => {
-    this.setState({
-      viewDate: this.state.viewDate.add(10, "years")
-    });
-  };
-
   subtractMinute = () => {
     this.setState(
       {
@@ -329,47 +318,45 @@ class DateTimeField extends Component {
     );
   };
 
-  subtractMonth = () => {
+  changeTime = (amount, unit) => {
+    const newDate = this.state.viewDate.clone();
+    newDate.add(amount, unit);
     this.setState({
-      viewDate: this.state.viewDate.subtract(1, "months")
+      viewDate: newDate
     });
   };
 
-  subtractYear = () => {
-    this.setState({
-      viewDate: this.state.viewDate.subtract(1, "years")
-    });
-  };
+  addMonth = () => this.changeTime(1, "months");
 
-  subtractDecade = () => {
-    this.setState({
-      viewDate: this.state.viewDate.subtract(10, "years")
-    });
-  };
+  addYear = () => this.changeTime(1, "years");
+
+  addDecade = () => this.changeTime(10, "years");
+
+  subtractMonth = () => this.changeTime(-1, "months");
+
+  subtractYear = () => this.changeTime(-1, "years");
+
+  subtractDecade = () => this.changeTime(-10, "years");
 
   togglePeriod = () => {
-    if (this.state.selectedDate.hour() > 12) {
-      return this.onChange(
-        this.state.selectedDate
-          .clone()
-          .subtract(12, "hours")
-          .format(this.state.inputFormat)
-      );
-    } else {
-      return this.onChange(
-        this.state.selectedDate
-          .clone()
-          .add(12, "hours")
-          .format(this.state.inputFormat)
-      );
+    const isPM = this.state.selectedDate.hour() > 12;
+
+    const hour = this.state.selectedDate
+      .clone()
+      .add(12 * (isPM ? -1 : 1), "hours")
+      .get("hour");
+
+    const newDate = this.state.selectedDate.clone().hour(hour);
+    if (this.isInRange(newDate)) {
+      this.onChange(newDate.format(this.state.inputFormat));
     }
   };
 
   togglePicker = () => {
-    this.setState({
-      showDatePicker: !this.state.showDatePicker,
-      showTimePicker: !this.state.showTimePicker
-    });
+    this.setState(state => ({
+      showDatePicker: !state.showDatePicker,
+      showTimePicker: !state.showTimePicker
+    }));
   };
 
   onClick = () => {
@@ -431,13 +418,11 @@ class DateTimeField extends Component {
   };
 
   closePicker = () => {
-    let style = { ...this.state.widgetStyle };
-    style.display = "none";
     this.setState({
       showPicker: false,
       showTimePicker: false,
       showDatePicker: true,
-      widgetStyle: style,
+      widgetStyle: { ...this.state.widgetStyle, display: "none" },
       viewDate: getViewDate(this.props)
     });
   };
