@@ -2,96 +2,75 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-const renderDays = props => {
-  let year = props.viewDate.year();
-  let month = props.viewDate.month();
-  let prevMonth = props.viewDate.clone().subtract(1, "months");
-  let days = prevMonth.daysInMonth();
-  prevMonth.date(days).startOf("week");
-  let nextMonth = moment(prevMonth)
+const renderDays = ({
+  viewDate,
+  selectedDate,
+  showToday,
+  daysOfWeekDisabled,
+  minDate,
+  maxDate
+}) => {
+  const viewYear = viewDate.year();
+  const viewMonth = viewDate.month();
+  const selected = selectedDate.clone().startOf("day");
+  let day = viewDate
     .clone()
-    .add(42, "d");
+    .subtract(1, "month")
+    .startOf("day")
+    .endOf("month")
+    .startOf("week");
 
-  let minDate = props.minDate
-    ? props.minDate.clone().subtract(1, "days")
-    : props.minDate;
-  let maxDate = props.maxDate ? props.maxDate.clone() : props.maxDate;
+  const weeksToDisplay = 6;
+  const nextMonth = day
+    .clone()
+    .add(weeksToDisplay, "weeks")
+    .valueOf();
+
+  const min = minDate ? minDate.clone().subtract(1, "days") : null;
+  const max = maxDate ? maxDate.clone() : null;
 
   let html = [];
   let cells = [];
 
-  let classes;
-  while (prevMonth.isBefore(nextMonth)) {
-    classes = "day";
+  const today = moment().startOf("day");
+  while (day.valueOf() < nextMonth) {
+    let classes = "day";
 
-    const prevMonthYear = prevMonth.year();
-    if (
-      prevMonthYear < year ||
-      (prevMonthYear === year && prevMonth.month() < month)
-    ) {
+    const year = day.year();
+    const month = day.month();
+    if (year < viewYear || (year === viewYear && month < viewMonth)) {
       classes += " old";
-    } else if (
-      prevMonthYear > year ||
-      (prevMonthYear === year && prevMonth.month() > month)
-    ) {
+    } else if (year > viewYear || (year === viewYear && month > viewMonth)) {
       classes += " new";
     }
 
-    if (
-      prevMonth.isSame(
-        moment({
-          y: props.selectedDate.year(),
-          M: props.selectedDate.month(),
-          d: props.selectedDate.date()
-        })
-      )
-    ) {
-      classes += " active";
-    }
+    if (day.isSame(selected)) classes += " active";
+    if (showToday && day.isSame(today)) classes += " today";
 
-    if (props.showToday) {
-      if (prevMonth.isSame(moment(), "day")) {
-        classes += " today";
-      }
-    }
+    const outOfRange = (min && day.isBefore(min)) || (max && day.isAfter(max));
+    const checkDayOfWeekDisabled = () =>
+      daysOfWeekDisabled.indexOf(day.day()) !== -1;
+    const disabled = outOfRange || checkDayOfWeekDisabled();
 
-    if (
-      (minDate && prevMonth.isBefore(minDate)) ||
-      (maxDate && prevMonth.isAfter(maxDate))
-    ) {
-      classes += " disabled";
-    }
-
-    if (
-      props.daysOfWeekDisabled.length > 0 &&
-      props.daysOfWeekDisabled.indexOf(prevMonth.day()) !== -1
-    ) {
-      classes += " disabled";
-    }
+    if (disabled) classes += " disabled";
 
     cells.push(
       <td
         className={classes}
-        key={prevMonth.month() + "-" + prevMonth.date()}
-        onClick={props.setSelectedDate}
+        key={day.month() + "-" + day.date()}
+        aria-disabled={disabled}
       >
-        {prevMonth.date()}
+        {day.date()}
       </td>
     );
 
-    if (
-      prevMonth.weekday() ===
-      moment()
-        .endOf("week")
-        .weekday()
-    ) {
-      html.push(
-        <tr key={prevMonth.month() + "-" + prevMonth.date()}>{cells}</tr>
-      );
+    const lastDayOfWeek = 6;
+    if (day.weekday() === lastDayOfWeek) {
+      html.push(<tr key={day.month() + "-" + day.date()}>{cells}</tr>);
       cells = [];
     }
 
-    prevMonth.add(1, "d");
+    day.add(1, "day");
   }
 
   return html;
@@ -133,7 +112,7 @@ const DateTimePickerDays = props => {
           </tr>
         </thead>
 
-        <tbody>{renderDays(props)}</tbody>
+        <tbody onClick={props.setSelectedDate}>{renderDays(props)}</tbody>
       </table>
     </div>
   );
