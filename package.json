@@ -50,7 +50,6 @@
     "classnames": "^2.2.6",
     "clean-css": "^4.2.1",
     "cross-env": "^5.2.0",
-    "eonasdan-bootstrap-datetimepicker": "https://github.com/Eonasdan/bootstrap-datetimepicker/tarball/4.17.47",
     "gulp": "^4.0.0",
     "jest": "^25.1.0",
     "moment": "^2.24.0",
