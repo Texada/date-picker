@@ -24,7 +24,7 @@ gulp.task("build-css", done => {
     level: 2
   }).minify(
     [
-      "node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
+      "src/css/bootstrap-datetimepicker.min.css",
       "src/css/styles.css"
     ],
     (err, output) => {
