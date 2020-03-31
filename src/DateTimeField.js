@@ -161,38 +161,39 @@ class DateTimeField extends Component {
     );
   };
 
-  setSelectedDate = e => {
-    const { target } = e;
-    if (target.className && !target.className.match(/disabled/g)) {
-      let month;
-      if (target.className.indexOf("new") >= 0)
-        month = this.state.viewDate.month() + 1;
-      else if (target.className.indexOf("old") >= 0)
-        month = this.state.viewDate.month() - 1;
-      else month = this.state.viewDate.month();
-      this.setState(
-        {
-          selectedDate: this.state.viewDate
-            .clone()
-            .month(month)
-            .date(parseInt(e.target.innerHTML))
-            .hour(this.state.selectedDate.hours())
-            .minute(this.state.selectedDate.minutes())
-        },
-        function() {
-          this.closePicker();
+  setSelectedDate = ({ target }) => {
+    if (target.nodeName !== "TD") return;
+    const isDisabled = target.className && !target.className.match(/disabled/g);
+    if (isDisabled) return;
 
-          const changedDate = this.state.selectedDate;
-          this.props.onChange(
-            changedDate.format(this.props.format),
-            changedDate.format(this.state.inputFormat)
-          );
-          this.setState({
-            inputValue: changedDate.format(this.state.inputFormat)
-          });
-        }
-      );
-    }
+    let month;
+    if (target.className.indexOf("new") >= 0)
+      month = this.state.viewDate.month() + 1;
+    else if (target.className.indexOf("old") >= 0)
+      month = this.state.viewDate.month() - 1;
+    else month = this.state.viewDate.month();
+    this.setState(
+      {
+        selectedDate: this.state.viewDate
+          .clone()
+          .month(month)
+          .date(parseInt(target.innerHTML))
+          .hour(this.state.selectedDate.hours())
+          .minute(this.state.selectedDate.minutes())
+      },
+      function() {
+        this.closePicker();
+
+        const changedDate = this.state.selectedDate;
+        this.props.onChange(
+          changedDate.format(this.props.format),
+          changedDate.format(this.state.inputFormat)
+        );
+        this.setState({
+          inputValue: changedDate.format(this.state.inputFormat)
+        });
+      }
+    );
   };
 
   setSelectedHour = e => {
