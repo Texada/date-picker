@@ -163,7 +163,8 @@ class DateTimeField extends Component {
 
   setSelectedDate = ({ target }) => {
     if (target.nodeName !== "TD") return;
-    const isDisabled = target.className && !target.className.match(/disabled/g);
+    const isDisabled =
+      target.className && Boolean(target.className.match(/disabled/g));
     if (isDisabled) return;
 
     let month;
