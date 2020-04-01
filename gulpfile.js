@@ -23,10 +23,7 @@ gulp.task("build-css", done => {
   new CleanCSS({
     level: 2
   }).minify(
-    [
-      "src/css/bootstrap-datetimepicker.min.css",
-      "src/css/styles.css"
-    ],
+    ["src/css/bootstrap-datetimepicker.css", "src/css/styles.css"],
     (err, output) => {
       if (!fs.existsSync("./dist")) {
         fs.mkdirSync("./dist");
